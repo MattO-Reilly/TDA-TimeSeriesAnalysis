@@ -86,6 +86,8 @@ plot(Time_Series_Aperiodic, select = NULL, which = c('A'), ask = NULL,
 #Turning Atomic Vector into dataframe for manipulation
 total_df <- as.data.frame(rbind(Time_Series_Stable,Time_Series_Aperiodic)) %>%
   select(time, A)
+rownames(total_df) <- NULL
+
 
 
 #K-Means
