@@ -93,7 +93,7 @@ total_df$Classification =c(rep("Stable",201),rep("Aperiodic",201))
 
 
 #K-Means
-kmeans(total_df, 2,25)
+kmeans(total_df$A, 2,25)
 
 ```
 
