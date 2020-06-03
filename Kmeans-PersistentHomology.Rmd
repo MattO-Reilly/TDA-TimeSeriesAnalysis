@@ -101,6 +101,23 @@ km_clusters <- kmtotal_df$cluster
 correct <- rep(c("+","-"), each=201)
 table(km_clusters,correct)
 
+#Takens Embedding theorem
+suppressMessages(library('nonlinearTseries'))
+total_a = total_df$A
+tak = buildTakens(total_a,embedding.dim = 2, time.lag = 3)
+plot(tak)
+
+#TDA Persistent Homology - Barcode and persistence diagram
+install.packages("TDA", dependencies=TRUE) 
+library(TDA) 
+
+install.packages("TDAstats")
+library("TDAstats")
+
+hom <- calculate_homology(tak)
+plot_barcode(hom)
+plot_persist(hom)
+
 
 ```
 
