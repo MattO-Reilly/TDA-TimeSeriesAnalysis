@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Series Analysis using TDA</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <div class="header"> 
+        <h1>Topological Data Analysis of Time Series data.</h1> </div>
+
+    <div class='abstract'>
+
+        <p><b>Abstract:</b> Topological Data Analysis (TDA) is a branch of data science aiming to use methods of Algebraic Topology, In particular Persistent Homology, to analyze data. Time-series data arise in Biology and Finance and can be very chaotic in nature. TDA as a topological tool is robust to noise and can be applied to extract information from small data sets. Our aim with this project is to understand how effective TDA is at analysing time series data. </p>
+
+    <div class='Background Reading'></div>
+        <p> Our aim in this project was to compare traditional methods of Data Analysis such as K means with the more robust methods of Algebraic Topology, our focus was with Persistent Homology. There are a few topics which we must discuss before we can analyse our results.</p>
+        <br>
+        <h4>What is Time Series Data?</h4>
+        <p> It is a set of measurements taken at equally space time intervals (e.g Yearly - annual profit, Monthly - average temperature , Daily - Petrol Prices) Put simply, It is data that changes over time
+        <br>
+        Time series have 4 compponents:
+        <ol>
+            <li>Trend - This is the overall longterm direction of the Time series.</li>
+            <li>Seasonality - repeated behaviour in the data that occurs at regular intervals.</li>
+            <li>Cycles - Occurs when a series follows an up and down pattern that is not seasonal. They can be of varying length.</li>
+            <li>Variation - Some time series will have a lot </li>
+            <li>Irregularities - Due to issues in the real world</li>
+        </ol></p>
+
+        <p> This brings us to our next question. </p>
+
+        <h4> What is Algebraic Topology? </h4>
+        <p>uses tools from abstract algebra to study topological spaces
+        <br>
+        The main branches of algebraic topology are:
+        <ol>
+            <li>Homotopy groups - record information about the basic shape, or holes, of a topological space.</li>
+            <li>Homology - is a certain general procedure to associate a sequence of abelian groups or modules with a given mathematical object such as a topological space or a group. </li>
+            <li>Cohomology </li>
+            <li>Manifolds - a topological space that near each point resembles Euclidean space. (E.g. The Plane, The Sphere, The Torus, Klein Bottle, Real Projective Plane)</li>
+            <li>Knot theory</li>
+            <li>Complexes</li>
+        </ol>
+        In the algebraic approach, one finds a correspondence between spaces and groups that respects the relation of homeomorphism (or more general homotopy) of spaces. </p></div>
+
+
+    <div class="Analysis">
+        <h2> <u>Time Series Analysis </u></h3>
+        <p> Traditional methods of data analysis use methods such as K-Means to cluster data but the emerging discipline of Topological data analysis is beginning to bridge the gap between computation and the mathematical theory of Topology. This section will involve some rather heavy theory but perservere and your efforts will be rewarded.</p>
+
+        <p> <b><u>Takens' Theorem:</u></b>
+        <br> Let \(M\) be a compact \(C^2\) differentiable manifold of dimension \(m\).
+        Let \(\Phi: M \rightarrow M\) be a \(C^2\)  diffeomorphism and let \(\mu: M \rightarrow \mathbb{R}\) be any \(C^2\) map. It is a generic property that the mapping 
+        \begin{equation}
+        \Phi_{\phi, \mu}: M \rightarrow \mathbb{R}^{2 m+1}, x \mapsto\left(\mu(x), \mu \phi(x), \mu \phi^{2}(x), \ldots, \mu \phi^{2 m}(x)\right)
+        \end{equation}
+        is an embedding.
+
+
+
+
+
+
+</body>
+</html>
