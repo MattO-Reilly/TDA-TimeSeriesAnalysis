@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topological Data Analysis - The se of persistent homology in time series classification.</title>
+    <title>Topological Data Analysis - The set of persistent homology in time series classification.</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -55,7 +55,15 @@
         </ol>
         Homotopy, homology, and cohomology groups are the main areas of study in algebraic topology. In a very broad sense they attempt to capture the number of k-dimensional holes in a topological space. </p></div>
 
-         <h4> Betti Numbers and Holes: </h4>
+        <h4>Simplicial Complexs</h4>
+        <p>Simplicial Complexes are defined as collections of simplices which satisfy the following conditions.
+            <li>The complex must contain every face of any simplex belonging to it.</li>
+            <li>Any simplices that overlap do so on a common face</li>
+            These simplicial complexes are often used To Triangulate Topological Spaces that they are Homeomorphic to, 
+            However in Persistent Homology we use a special type called a Vietoris-Rips Complex.
+            In these complexes two vertices x and y in a dataset are only connected by an edge if for an assigned value e the euclidean distance d(x,y) is less than e </p>
+
+        <h4> Betti Numbers and Holes: </h4>
         <p>A hole in a mathematical object is a topological structure which prevents the object from being continuously shrunk to a point. When dealing with topological spaces, a disconnectivity is interpreted as a hole in the space.
         <br>
         <p>In algebraic topology, the Betti numbers are used to distinguish topological spaces based on the connectivity of n-dimensional simplicial complexes.</p>
