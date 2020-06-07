@@ -1,0 +1,34 @@
+#Aperiodic 
+Time_Series_Aperiodic1 <- data.frame()
+range2 <- 1:3
+for (i in range2){
+parameters2 <- c(b = 7.48, c_ea = 0.009, c_pa = 0.004, c_el = 0.012, u_p = 0, u_l = 0.267, u_a = 0.96)
+state2 <- c(L = sample(2:100,1), P = sample(2:100,1), A = sample(2:100,1))
+beetles2<-function(t, state, parameters) {
+  with(as.list(c(state, parameters)),{
+    # rate of change
+    L1 <- b * A * exp((-c_el * L) - (c_ea * A))
+    P1 <- L * (1 - u_l) 
+    A1 <- (P * exp(-c_pa * A) + A * (1 - u_a)) 
+    
+    # return the rate of change
+    list(c(L1, P1, A1))
+  }) # end with(as.list ...
+}
+times2 <- seq(0, 200)
+library(deSolve)
+Time_Series_Aperiodic <- ode(y = state2, times = times2, func = beetles2, parms = parameters2, method = "iteration")
+head(Time_Series_Aperiodic)
+
+
+Time_Series_Aperiodic1 <- rbind.data.frame(Time_Series_Aperiodic,Time_Series_Aperiodic1)
+
+
+#Plotting A vs Time Graph
+plot(Time_Series_Aperiodic, select = NULL, which = c('A'), ask = NULL,
+     obs = NULL, obspar = list())
+
+
+
+}
+Time_Series_Aperiodic1
