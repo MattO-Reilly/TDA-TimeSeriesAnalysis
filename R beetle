@@ -90,6 +90,33 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
 ```{r}
 km_clusters <- kmtotal$cluster
 correct <- rep(c("1","2"), each=200)
-table(correct,km_clusters)
+cfm <- table(correct,km_clusters)
+cfm
+```
+#Analysis
+TP <- cfm[1,1]
+FN <- cfm[1,2]
+FP <- cfm[2,1]
+TN <- cfm[2,2]
+
+Recall <- TP/(TP+FN)
+Specificity <- TN/(TN+FP)
+Precision <- TP/(TP+FP)
+Negative_predictive_value <- TP/(TP+FP)
+Fall_out <- FP/(FP+TN)
+False_discovery_rate <- FP/(FP+TP)
+Accuracy <- (TP+TN)/(TP+TN+FP+FN)
+F1_Score <- (2*TP)/((2*TP)+FP+FN)
+MCC <- (TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
+
+Recall
+Specificity 
+Precision 
+Negative_predictive_value 
+Fall_out 
+False_discovery_rate 
+Accuracy 
+F1_Score 
+MCC 
 
 ```
