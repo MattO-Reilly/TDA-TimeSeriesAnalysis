@@ -126,7 +126,7 @@ MCC
 tak = buildTakens(data here ,2,3)
 
 #Persistent homology
-hom <- calculate_homology(data here)
+hom <- calculate_homology(tak)
 plot_barcode(hom)
 plot_persist(hom)
 ```
