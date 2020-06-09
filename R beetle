@@ -119,4 +119,14 @@ Accuracy
 F1_Score 
 MCC 
 
+
+
+#Outline of persistent homology
+#Takens
+tak = buildTakens(data here ,2,3)
+
+#Persistent homology
+hom <- calculate_homology(data here)
+plot_barcode(hom)
+plot_persist(hom)
 ```
