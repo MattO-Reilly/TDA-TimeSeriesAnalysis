@@ -139,3 +139,17 @@ for (i in 1:400) {
 #plot_barcode(hom)
 #plot_persist(hom)
 ```
+
+
+#potential compute betti numbers
+compute_betti_number <- function(diag, dim, radius){
+  # alphaComplexDiag comes with Inf in first row
+  if(diag[1,3] == Inf){
+    filtered_diag <- diag[which(diag[,1]==dim), 2:3][-1,]
+  } else {
+    filtered_diag <- diag[which(diag[,1]==dim), 2:3]
+  }
+  n_birth <- sum(filtered_diag[,1] <= radius)
+  n_death <- sum(filtered_diag[,2] <= radius)
+  return(n_birth-n_death)
+}
