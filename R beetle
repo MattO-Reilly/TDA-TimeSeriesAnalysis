@@ -118,15 +118,24 @@ False_discovery_rate
 Accuracy 
 F1_Score 
 MCC 
+#for loop select rows one by one and gets their persistence diagram
+for (i in 1:400) {
+  data(Time_Series_Data)
+  Time_Seriesi <- Time_Series_Data[i,]
+  Tak = buildTakens(Time_Seriesi,2,3)
+  hom <- calculate_homology(Tak)
+  plot_persist(hom)
+  
+}
 
 
 
 #Outline of persistent homology
 #Takens
-tak = buildTakens(data here ,2,3)
+#tak = buildTakens(data here ,2,3)
 
 #Persistent homology
-hom <- calculate_homology(tak)
-plot_barcode(hom)
-plot_persist(hom)
+#hom <- calculate_homology(tak)
+#plot_barcode(hom)
+#plot_persist(hom)
 ```
