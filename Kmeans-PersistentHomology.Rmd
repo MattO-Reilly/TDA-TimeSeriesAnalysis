@@ -1,4 +1,4 @@
-8/6/20 - Matt
+11/6/20 - Matt
 ---
   title: "TDA - Time Series"
 output:
@@ -12,18 +12,60 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #Libraries
 ```{r}
-library(caret)
-library(lattice)
-library(ggplot2)
-library(dplyr)
-library(ellipsis)
+#ODE 
 library(deSolve)
-library(data.table)
+
+#Graphs and data Manipulation
+library(tidyverse)
+
+#Confusion Matrix
+library(caret) 
+
+#Persistent Homology
+library(nonlinearTseries)
+library(TDAstats)
+
+#BettiNumbers
+library(matrixStats)
 ```
+
+
+
+#Aperiodic 
+```{r}
+Time_Series_Data<- data.frame()
+for (i in 1:200){
+  parameters2 <- c(b = 7.48, c_ea = 0.009, c_pa = 0.004, c_el = 0.012, u_p = 0, u_l = 0.267, u_a = 0.96)
+  state2 <- c(L = sample(2:100,1), P = sample(2:100,1), A = sample(2:100,1))
+  beetles2<-function(t, state, parameters) {
+    with(as.list(c(state, parameters)),{
+      # rate of change
+      L1 <- b * A * exp((-c_el * L) - (c_ea * A))
+      P1 <- L * (1 - u_l) 
+      A1 <- (P * exp(-c_pa * A) + A * (1 - u_a)) 
+      
+      # return the rate of change
+      list(c(L1, P1, A1))
+    }) # end with(as.list ...
+  }
+  
+times2 <- seq(0, 200)
+Aperiodic_i <- ode(y = state2, times = times2, func = beetles2, parms = parameters2, method = "iteration")
+  
+
+aperiodic <- as.data.frame(Aperiodic_i) %>% select(A)
+transposeAperiodic<-t(aperiodic)
+Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)
+
+  
+}
+```
+
+
 
 #Stable Equilibrium - Time series
 ```{r}
-Time_Series_Data<- data.frame()
+
 
 for (i in 1:200){
   parameters1 <- c(b = 7.48, c_ea = 0.009, c_pa = 0.004, c_el = 0.012, u_p = 0, u_l = 0.267, u_a = 0.73)
@@ -54,61 +96,70 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
 }
 ```
 
-#Aperiodic 
-```{r}
-for (i in 1:200){
-  parameters2 <- c(b = 7.48, c_ea = 0.009, c_pa = 0.004, c_el = 0.012, u_p = 0, u_l = 0.267, u_a = 0.96)
-  state2 <- c(L = sample(2:100,1), P = sample(2:100,1), A = sample(2:100,1))
-  beetles2<-function(t, state, parameters) {
-    with(as.list(c(state, parameters)),{
-      # rate of change
-      L1 <- b * A * exp((-c_el * L) - (c_ea * A))
-      P1 <- L * (1 - u_l) 
-      A1 <- (P * exp(-c_pa * A) + A * (1 - u_a)) 
-      
-      # return the rate of change
-      list(c(L1, P1, A1))
-    }) # end with(as.list ...
-  }
-  
-times2 <- seq(0, 200)
-Aperiodic_i <- ode(y = state2, times = times2, func = beetles2, parms = parameters2, method = "iteration")
-  
 
-aperiodic <- as.data.frame(Aperiodic_i) %>% select(A)
-transposeAperiodic<-t(aperiodic)
-Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)
-  
-}
-```
 
 #Rename rows so we can Identify Time series as Stable or Aperiodic
 ```{r}
-(setattr(Time_Series_Data, "row.names", c(rep("Aperiodic",200),rep("Stable",200))))
-```
-
-#Turning Atomic Vector into dataframe for manipulation
-```{r}
-#Time_Series_Stable1$Classification =c(rep("Stable"))
-
-#Time_Series_Aperiodic1$Classification =c(rep("Aperiodic"))
-
-#ts <- rbind.data.frame(Time_Series_Stable1,Time_Series_Aperiodic1) %>%
- # select(time, A, Classification)
-```
-
-#ConfusionMatrix
-```{r}
-#kmtotal <- kmeans(ts$A, 2,100)
-#km_clusters <- kmtotal$cluster
-#correct <- rep(c("1","2"), each=603)
-#table(km_clusters,correct)
+(setattr(Time_Series_Data, "row.names", c(rep("Stable",200),rep("Aperiodic",200))))
 ```
 
 #K-Means
 ```{r}
-kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
+set.seed(250)
+kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
 ```
 
+#ConfusionMatrix
+```{r}
+km_clusters <- kmtotal$cluster
+correct <- rep(c("2","1"), each=200)
+cfm <- table(correct,km_clusters)
+cfm
+```
+
+#Analysis
+```{r}
+TP <- cfm[1,1]
+FN <- cfm[1,2]
+FP <- cfm[2,1]
+TN <- cfm[2,2]
+
+Recall <- TP/(TP+FN)
+Specificity <- TN/(TN+FP)
+Precision <- TP/(TP+FP)
+Negative_predictive_value <- TP/(TP+FP)
+Fall_out <- FP/(FP+TN)
+False_discovery_rate <- FP/(FP+TP)
+Accuracy <- (TP+TN)/(TP+TN+FP+FN)
+F1_Score <- (2*TP)/((2*TP)+FP+FN)
+MCC <- (TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
+
+```
+
+#for loop select rows one by one and gets their persistence diagram
+```{r}
+x<- data.matrix(Time_Series_Data[1,])
+a<- buildTakens(x,2,3)
+plot(a)
+y<-data.matrix(Time_Series_Data[201,])
+z<-buildTakens(y,2,3)
+plot(z)
+
+#Persistent homology
+hom <- calculate_homology(a)
+plot_barcode(hom)
+plot_persist(hom)
 
 
+hom1 <- calculate_homology(z)
+hom1
+#hom2<- persistent_homology(z)
+plot_barcode(hom1)
+
+
+```
+
+```{r}
+#BettiNumbers
+
+```
