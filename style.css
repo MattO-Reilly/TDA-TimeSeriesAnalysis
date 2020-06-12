@@ -1,11 +1,18 @@
 /*Body and Side Bar*/
-h2{
+h1{
     color: crimson;
     text-align: center;
 }
 body{
-    background-color: white
+    background-color: white;
     font-size: 1vw;
+}
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 10px;
+  max-width: auto
 }
 /* The side navigation menu */
 .sidebar {
@@ -117,9 +124,17 @@ div.content {
 .Takens{
     border: solid 2px black;
     padding: 10px;
+    page-break-after: always;
+    background-color: #eee;
 }
 .Analysis{
     display: inline-block;
     width: 100%
     overflow: scroll;
+}
+.ConfusionMatrix{
+    border: solid 2px black;
+    padding: 10px;
+    background-color: #eee;
+    text-align: left;
 }
