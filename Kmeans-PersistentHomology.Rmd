@@ -54,9 +54,7 @@ Aperiodic_i <- ode(y = state2, times = seq(0, 200), func = beetles2, parms = par
 
 aperiodic <- as.data.frame(Aperiodic_i) %>% select(A)
 transposeAperiodic<-t(aperiodic)
-Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)
-
-  
+Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)  
 }
 ```
 
@@ -64,8 +62,6 @@ Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)
 
 #Stable Equilibrium - Time series
 ```{r}
-
-
 for (i in 1:200){
   parameters1 <- c(b = 7.48, c_ea = 0.009, c_pa = 0.004, c_el = 0.012, u_p = 0, u_l = 0.267, u_a = 0.73)
 
@@ -102,11 +98,13 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
 (setattr(Time_Series_Data, "row.names", c(rep("Stable",200),rep("Aperiodic",200))))
 ```
 
+
 #K-Means
 ```{r}
 set.seed(250)
 kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
 ```
+
 
 #ConfusionMatrix
 ```{r}
@@ -115,6 +113,7 @@ correct <- rep(c("2","1"), each=200)
 cfm <- table(correct,km_clusters)
 cfm
 ```
+
 
 #Analysis
 ```{r}
@@ -132,13 +131,12 @@ False_discovery_rate <- FP/(FP+TP)
 Accuracy <- (TP+TN)/(TP+TN+FP+FN)
 F1_Score <- (2*TP)/((2*TP)+FP+FN)
 MCC <- (TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
-
 ```
+
+
 
 #for loop select rows one by one and gets their persistence diagram
 ```{r}
-
-
 x<- data.matrix(Time_Series_Data[1,])
 a<- buildTakens(x,2,3)
 #plot(a)
@@ -154,9 +152,9 @@ hom_matrix <- as.data.frame(hom_matrix)
 
 
 hom_matrix[hom_matrix$persistent == '1',]
-
-
 ```
+
+
 
 ```{r}
 #BettiNumbers
