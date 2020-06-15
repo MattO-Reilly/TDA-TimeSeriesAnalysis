@@ -133,27 +133,23 @@ F1_Score <- (2*TP)/((2*TP)+FP+FN)
 MCC <- (TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
 ```
 
-
-
 #for loop select rows one by one and gets their persistence diagram
 ```{r}
-x<- data.matrix(Time_Series_Data[1,])
+pers <- data.frame()
+for (i in 1:400){
+x<- data.matrix(Time_Series_Data[i,])
 a<- buildTakens(x,2,3)
-#plot(a)
-
-#Persistent homology
 hom <- calculate_homology(a,return_df = TRUE)
 hom <- hom %>%
   mutate(persistence = death-birth) %>%
-  mutate(persistent = ifelse(persistence> max(persistence-0.1), 1,0))
-
+  mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
 hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
-hom_matrix <- as.data.frame(hom_matrix)
+hom_matrix <- as.data.frame(hom_matrix) 
+p1 <- hom_matrix[hom_matrix$persistent == '1',] 
 
-
-hom_matrix[hom_matrix$persistent == '1',]
+pers <- rbind.data.frame(p1,pers) 
+}
 ```
-
 
 
 ```{r}
