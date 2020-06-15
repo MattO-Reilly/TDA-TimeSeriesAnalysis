@@ -133,10 +133,10 @@ F1_Score <- (2*TP)/((2*TP)+FP+FN)
 MCC <- (TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
 ```
 
-#for loop select rows one by one and gets their persistence diagram
+#calculate homolgy of stable
 ```{r}
-pers <- data.frame()
-for (i in 1:400){
+pers_stable <- data.frame()
+for (i in 1:200){
 x<- data.matrix(Time_Series_Data[i,])
 a<- buildTakens(x,2,3)
 hom <- calculate_homology(a,return_df = TRUE)
@@ -147,12 +147,45 @@ hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
 hom_matrix <- as.data.frame(hom_matrix) 
 p1 <- hom_matrix[hom_matrix$persistent == '1',] 
 
-pers <- rbind.data.frame(pers,p1) 
+pers_stable <- rbind.data.frame(pers_stable,p1) 
 }
+
+
+```
+#sort by correct or incorrect for stable
+check_stable <- pers_stable[pers_stable$dimension == 0,] 
+stable_correct_hom <- nrow(check_stable)
+stable_incorrect_hom <- 200 - stable_correct_hom
+
 ```
 
 
+#calculate homolgy of aperiodic
 ```{r}
-#BettiNumbers
+pers_aperiodic <- data.frame()
+for (i in 201:400){
+  x1<- data.matrix(Time_Series_Data[i,])
+  a1<- buildTakens(x1,2,3)
+  hom1 <- calculate_homology(a1,return_df = TRUE)
+  hom1 <- hom1 %>%
+    mutate(persistence = death-birth) %>%
+    mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
+  hom_matrix1 <- data_frame(hom1) %>% select(dimension, persistent)
+  hom_matrix1 <- as.data.frame(hom_matrix1) 
+  p2 <- hom_matrix1[hom_matrix1$persistent == '1',] 
+  
+  pers_aperiodic <- rbind.data.frame(pers_aperiodic,p2)  
+}
 
+```
+
+#sort by correct or incorrect for aperiodic
+check_aperiodic <- pers_aperiodic[pers_aperiodic$dimension == 1,] 
+aperiodic_correct_hom <- nrow(check_aperiodic)
+aperiodic_incorrect_hom <- 200 - aperiodic_correct_hom
+```
+
+#confusion matrix for homology
+cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect_hom,aperiodic_correct_hom))
+cfm_hom
 ```
