@@ -147,7 +147,7 @@ hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
 hom_matrix <- as.data.frame(hom_matrix) 
 p1 <- hom_matrix[hom_matrix$persistent == '1',] 
 
-pers <- rbind.data.frame(p1,pers) 
+pers <- rbind.data.frame(pers,p1) 
 }
 ```
 
