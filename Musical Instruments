@@ -1,0 +1,16 @@
+library(nonlinearTseries)
+library(TDAstats)
+library(dplyr)
+
+#Takens
+flute_A4 <- flute[1]
+flute_A4 <- slice(flute_A4, -c(1))
+flute_A4_matrix <- as.matrix(flute_A4)
+tak <- buildTakens(flute_A4_matrix,2,3)#need to change tau
+plot(tak)
+
+
+#Persistent homology
+hom <- calculate_homology(tak) #error here
+plot_barcode(hom)
+plot_persist(hom)
