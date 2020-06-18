@@ -1,0 +1,45 @@
+---
+title: "TDA_Musical_Instruments"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(nonlinearTseries)
+library(TDAstats)
+library(tidyverse)
+```
+
+#Import data and Name Columns after Note
+```{r}
+flute_data <- read.csv("./Flute.csv")
+
+colnames(flute_data) <- c("A","B","C","D","E","F","G")
+```
+
+#Convert Column ime Series into Row Time Series
+```{r}
+transposed_flute_data<-t(flute_data) #Converts Column Vectors into Row Vectors
+```
+
+#K-Means
+```{r}
+set.seed(250)
+kmtotal <- kmeans(transposed_flute_data, 2, iter.max = 10, nstart = 1)
+kmtotal
+```
+
+
+#Takens
+```{r}
+for (i in 1:7){
+flute_A4_matrix <- data.matrix(transposed_flute_data[i,])
+tak <- buildTakens(flute_A4_matrix,2,3)
+
+hom <- calculate_homology(tak,return_df = TRUE) 
+
+}
+```
