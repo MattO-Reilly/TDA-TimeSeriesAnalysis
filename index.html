@@ -43,7 +43,7 @@
     <div id="Background_Reading" class='Background_Reading'>
         <h1 style="color: crimson; text-align: center"> <u>Background</u> </h1>
         <h3><u>What is a Time Series?</u></h3>
-        <p> A time series is a collection of numerical data points that are measured at successive evenly spaced intervals of time and indexed in time order. 
+        <p> A time series is a collection of numerical data points that are measured at successive evenly spaced intervals of time and indexed in time order. Examples of time series include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, daily closing price of a company stock, monthly rainfall data and yearly sales figures.
         <br>
 
         Time series are made up of four components:
@@ -55,7 +55,11 @@
 
 
         </ol></p>
-        <p> Examples of time series include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, daily closing price of a company stock, monthly rainfall data and yearly sales figures. </p>
+        <br>
+        <img src="./images/timeseries.png" class="center90">
+        <br>
+        <p> The Time Series seen above is an example of a Dynamical System. Simply put a Dynamical System is a system in which a function describes the time dependence of a point in a geometrical space. For example the swinging of a clock pendulum. Dynamical Systems have hidden states that can be preserved in a time series output. We can use Takens theorem to analyse these hidden states. 
+        </p>
     </div>
 
     <h3><u>Takens' Theorem:</u></h3>
@@ -70,13 +74,19 @@
 
     <div id="SimplicialComplexs" class="SimplicialComplexs">
         <h3><u>Simplicial Complexs</u></h3>
-        <p>Simplicial Complexes are defined as collections of simplices which satisfy the following conditions.
-            <li>The complex must contain every face of any simplex belonging to it.</li>
-            <li>Any simplices that overlap do so on a common face</li>
-            <br>
-            These simplicial complexes are often used To Triangulate Topological Spaces that they are Homeomorphic to, 
-            However in Persistent Homology we use a special type called a Vietoris-Rips Complex.
-            In these complexes two vertices x and y in a dataset are only connected by an edge if for an assigned value e the euclidean distance d(x,y) is less than e </p>
+        <p>Persistent homology is an algebraic method for measuring topological features of shapes and functions. Persistent features of data are deemed more likely to represent true features of the underlying space than noise. To begin talking about topological features of a given data set we must first introduce the concept of a Simplicial Complex.</p>
+        <p> In Mathematics a Simplex is a generalization of the notion of a triangle or tetrahedron to abritrary dimensions.
+            <ul>
+                <li>a 0-simplex is a point,</li>
+                <li>a 1-simplex is a line segment,</li>
+                <li>a 2-simplex is a triangle,</li>
+                <li>a 3-simplex is a tetrahedron,</li>
+            </ul>
+        In topology and combinatorics, it is common to “glue together” simplices to form a simplicial complex.</p>
+
+        <img src="./images/simplices.png" class="center90" style="width: 70%">
+
+        </p>
     </div>
 
 
