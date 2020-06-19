@@ -1,15 +1,91 @@
+---
+title: "TDA_Musical_Instruments"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
 library(nonlinearTseries)
 library(TDAstats)
-library(dplyr)
+library(tidyverse)
+```
+
+#Import data and Name Columns after Note
+```{r}
+flute_data <- read.csv("./Flute.csv")
+
+colnames(flute_data) <- c("A","B","C","D","E","F","G")
+
+```
+
+#Convert Column ime Series into Row Time Series
+```{r}
+transposed_flute_data<-t(flute_data) #Converts Column Vectors into Row Vectors
+```
+
 
 #Takens
-flute_A4 <- flute[1]
-flute_A4 <- slice(flute_A4, -c(1))
-flute_A4_matrix <- data.matrix(flute_A4)
-tak <- buildTakens(flute_A4_matrix,2,3) #need to change tau
-plot(tak)
+```{r}
 
-#Persistent homology
-hom <- calculate_homology(tak) 
-plot_barcode(hom)
-plot_persist(hom)
+Flute_homology1 <- data.frame()
+Flute_homology2 <- data.frame()
+Flute_homology3 <- data.frame()
+Flute_homology4 <- data.frame()
+Flute_homology5 <- data.frame()
+Flute_homology6 <- data.frame()
+Flute_homology7 <- data.frame()
+
+for (i in 1:7){
+flute_A4_matrix <- data.matrix(transposed_flute_data[i,])
+tak <- buildTakens(flute_A4_matrix,2,3)
+plot(tak)
+hom <- calculate_homology(tak,return_df = TRUE) 
+hom_matrix <- calculate_homology(tak,return_df = FALSE) 
+bar <- plot_barcode(hom_matrix)
+hom <- hom %>%
+  mutate(persistence = death-birth) %>%
+  mutate(persistent = ifelse(persistence > 0.1, 1,0))
+hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
+hom_matrix <- as.data.frame(hom_matrix) 
+p1 <- hom_matrix[hom_matrix$persistent == '1',] 
+
+if (i == 1){
+  Flute_homology1<-rbind.data.frame(Flute_homology1,p1)
+  bar1 <- bar
+}
+if (i == 2){
+  Flute_homology2<-rbind.data.frame(Flute_homology2,p1)
+  bar2 <- bar
+}
+if (i ==3){
+  Flute_homology3<-rbind.data.frame(Flute_homology3,p1)
+  bar3 <- bar
+}
+if (i ==4){
+  Flute_homology4<-rbind.data.frame(Flute_homology4,p1)
+  bar4 <- bar
+}
+if (i ==5){
+  Flute_homology5<-rbind.data.frame(Flute_homology5,p1)
+  bar5 <- bar
+}
+if (i ==6){
+  Flute_homology6<-rbind.data.frame(Flute_homology6,p1)
+  bar6 <- bar
+}
+if (i ==7){
+  Flute_homology7<-rbind.data.frame(Flute_homology7,p1)
+  bar7 <- bar
+}}
+
+bar1
+bar2
+bar3
+bar4
+bar5
+bar6
+bar7
+```
