@@ -72,8 +72,8 @@
         \end{equation}
         is an embedding.</p></div>
 
-    <div id="SimplicialComplexs" class="SimplicialComplexs">
-        <h3><u>Simplicial Complexs</u></h3>
+    <div id="PersistentHomology" class="PersistentHomology">
+        <h3><u>Persistent Homology</u></h3>
         <p>Persistent homology is an algebraic method for measuring topological features of shapes and functions. Persistent features of data are deemed more likely to represent true features of the underlying space than noise. To begin talking about topological features of a given data set we must first introduce the concept of a Simplicial Complex.</p>
         <p> In Mathematics a Simplex is a generalization of the notion of a triangle or tetrahedron to abritrary dimensions.
             <ul>
@@ -82,11 +82,14 @@
                 <li>a 2-simplex is a triangle,</li>
                 <li>a 3-simplex is a tetrahedron,</li>
             </ul>
-        In topology and combinatorics, it is common to “glue together” simplices to form a simplicial complex.</p>
 
-        <img src="./images/simplices.png" class="center90" style="width: 70%">
+        In topology and combinatorics, it is common to “glue together” simplices to form a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">Simplicial Complex.</a> </p>
 
-        </p>
+        <img src="./images/simplices.png" class="center90 image-right" style="width: 70%; border: ">
+
+
+
+        <p> If you would likw to learn more about the Basics of Persistent Homology then please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
     </div>
 
 
@@ -106,15 +109,6 @@
             <li>b2 is the number of two-dimensional "voids" or "cavities" </li>
             
         </ol>
-    </div>
-    <div id="PersistentHomology" class="PersistentHomology">
-        <h3><u>What is persistent homology?</u> </h3>
-        <p>Persistent homology is a method for computing topological features of a space at different spatial resolutions. More persistent features are detected over a wide range of spatial scales and are deemed more likely to represent true features of the underlying space rather than noise or choice of parameters. </p>
-        
-
-        
-       
-        <p> To find the persistent homology of a space, the space must first be represented as a simplicial complex. A distance function on the underlying space corresponds to a filtration of the simplicial complex, that is a nested sequence of increasing subsets. </p>
     </div>
 
     <div class="PersistenceDiagram">
