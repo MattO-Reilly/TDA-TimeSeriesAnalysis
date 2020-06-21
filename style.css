@@ -134,6 +134,11 @@ div.content {
     overflow: scroll;
 }
 .Takens{
+    display: inline-block;
+    width: 100%
+    overflow: scroll;
+}
+.TakensEquation{
     border: solid 2px black;
     padding: 10px;
     page-break-after: always;
