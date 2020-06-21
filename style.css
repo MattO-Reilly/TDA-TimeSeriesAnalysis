@@ -58,6 +58,7 @@ pre code {
   content: "";
   clear: both;
   display: table;
+  border: 1px black;
 }
 
 
