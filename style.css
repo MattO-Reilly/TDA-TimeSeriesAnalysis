@@ -83,6 +83,8 @@ div.content {
     height: auto;
     position: relative;
     }
+}
+@media screen and (max-width: 400px) {
     .SidebarHeading {
     display: none; }
 }
@@ -123,11 +125,6 @@ div.content {
     width: 100%
     overflow: scroll;
 }
-.SimplicialComplexs{
-    display: inline-block;
-    width: 100%
-    overflow: scroll;
-}
 .BettiNumbers{
     display: inline-block;
     width: 100%
@@ -138,7 +135,7 @@ div.content {
     width: 100%
     overflow: scroll;
 }
-.TakensEquation{
+.Taken{
     border: solid 2px black;
     padding: 10px;
     page-break-after: always;
