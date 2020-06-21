@@ -53,7 +53,7 @@ pre code {
 }
 
 /* Clear floats after image containers */
-.row::after {
+.row {
   content: "";
   clear: both;
   display: table;
