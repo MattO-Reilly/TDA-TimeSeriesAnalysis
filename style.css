@@ -117,8 +117,6 @@ div.content {
     display: inline-block;
     width: 100%
     overflow: scroll;
-    border: solid 1px black;
-    margin-top: 10px;
 }
 .SimplicialComplexs{
     display: inline-block;
