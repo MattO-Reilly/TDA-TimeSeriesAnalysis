@@ -29,7 +29,7 @@
 
 <div class="content">
     <div class="header"> 
-        <h1>Topological Data Analysis - The use of persistent homology for time series classification.</h1> </div>
+        <h1 style="color: black;">Topological Data Analysis - The use of persistent homology for time series classification.</h1> </div>
 
     <div class='intro'>
 
@@ -39,110 +39,14 @@
 
 
     <div id="Background_Reading" class='Background_Reading'>
-        <h1 style="color: crimson; text-align: center"> <u>Background</u> </h1>
-        <h3><u>What is a Time Series?</u></h3>
-        <p> A time series is a collection of numerical data points that are measured at successive evenly spaced intervals of time and indexed in time order. Examples of time series include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, daily closing price of a company stock, monthly rainfall data and yearly sales figures.
-        <br>
-
-        Time series are made up of four components:
-        <ol>
-            <li>Trend variations - The predictable long-term pattern of the time series.</li>
-            <li>Seasonal variations- Repeated behaviour in the data that occurs at regular intervals.</li>
-            <li>Cyclical variations - Occurs when a series follows an up and down pattern that is not seasonal. </li>
-            <li>Random variations – Do not fall under any of the above three classifications. </li>
-
-        </ol></p>
-        <br>
-        <div class="row">
-          <div class="column">
-            <img src="./images/AperiodicTimeSeries.pdf" alt="Aperiodic Time Series" style="width: 100%">
-          </div>
-          <div class="column">
-            <img src="./images/StableTimeSeries.pdf" alt="Stable Time Series" style="width: 100%">
-          </div>
-        </div>
-
-        <br>
-        <p> The Time Series seen above is an example of a Dynamical System. Simply put a Dynamical System is a system in which a function describes the time dependence of a point in a geometrical space. For example the swinging of a clock pendulum. Dynamical Systems have hidden states that can be preserved in a time series output. We can use Takens theorem to analyse these hidden states. 
-        </p></div>
-
-        <h3><u>Takens' Theorem:</u></h3>
-        <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
-        <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
-
-        <div class="Taken">
-        <p> Let \(M\) be a compact \(C^2\) differentiable manifold of dimension \(m\).
-        Let \(\Phi: M \rightarrow M\) be a \(C^2\)  diffeomorphism and let \(\mu: M \rightarrow \mathbb{R}\) be any \(C^2\) map. It is a generic property that the mapping 
-        \begin{equation}
-        \Phi_{\phi, \mu}: M \rightarrow \mathbb{R}^{2 m+1}, x \mapsto\left(\mu(x), \mu \phi(x), \mu \phi^{2}(x), \ldots, \mu \phi^{2 m}(x)\right)
-        \end{equation}
-        is an embedding.</p>
-        </div>
-        <img src="./images/Takens Embedding Aperiodic.pdf">
-        <img src="./images/Takens Embedding Stable.pdf">
-
-    <div id="PersistentHomology" class="PersistentHomology">
-        <h3><u>Persistent Homology</u></h3>
-        <p>Persistent homology is an algebraic method for measuring topological features of shapes and functions. Persistent features of data are deemed more likely to represent true features of the underlying space than noise. To begin talking about topological features of a given data set we must first introduce the concept of a Simplicial Complex.</p>
-        <p> In Mathematics a Simplex is a generalization of the notion of a triangle or tetrahedron to abritrary dimensions.
-            <ul>
-                <li>a 0-simplex is a point,</li>
-                <li>a 1-simplex is a line segment,</li>
-                <li>a 2-simplex is a triangle,</li>
-                <li>a 3-simplex is a tetrahedron,</li>
-            </ul>
-
-        In topology and combinatorics, it is common to “glue together” simplices to form a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">Simplicial Complex.</a> </p>
-
-        <img src="./images/simplices.png" class="center90 image-right" style="width: 70%;">
-
-
-
-        <p> If you would likw to learn more about the Basics of Persistent Homology then please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
+        <h1><u>Background</u></h1>
+        <p> Background Text</p> 
     </div>
 
 
-    <div id="BettiNumbers" class="BettiNumbers">
-        <h3> <u>Betti Numbers and Holes</u> </h3>
-        <p>A hole in a mathematical object is a topological structure which prevents the object from being continuously shrunk to a point. When dealing with topological spaces, a disconnectivity is interpreted as a hole in the space.
-        <br>
-        <p>In algebraic topology, the Betti numbers are used to distinguish topological spaces based on the connectivity of n-dimensional simplicial complexes.</p>
-        <p>Betti number: Bn = dim(ker(dn))-dim(image(dn+1)) </p>
-
-        Informally, the kth Betti number refers to the number of k-dimensional holes on a topological surface. The first few Betti numbers have the following definitions for 0-dimensional, 1-dimensional, and 2-dimensional simplicial complexes:
-
-        
-        <ol>
-            <li>b0 is the number of connected components</li>
-            <li>b1 is the number of one-dimensional or "circular" holes </li>
-            <li>b2 is the number of two-dimensional "voids" or "cavities" </li>
-            
-        </ol>
-    </div>
-
-    <div class="PersistenceDiagram">
-        <h3><u>Bar Codes and Persistence Diagrams</u> </h3>
-        <p>A bar code is a visual representation of persistent homology. Long bars represent features and short bars represent noise. </p>
-        
-        
-       
-        <p> A persistence diagram is very similar to a barcode, it captures the birth and death of features. The x-coordinate of a point represents when that point was born and the y-coordinate represents when that feature died. Features that are short lived occur close to the 45 degree line, while more persistent features occur at a greater distance from the 45 degree line.  </p>
-
-        <div class="row">
-          <div class="column">
-            <img src="./images/Barcode Aperiodic.pdf" alt="Aperiodic Persistence Diagram">
-          </div>
-          <div class="column">
-            <img src="./images/Barcode Stable.pdf" alt="Stable Persistence Diagram">
-          </div>
-        </div>
-
-    </div>
-
-
-
-    <div id="Analysis" class="Analysis" style="margin-top: 30px" >
-        <h1 style="color: crimson; text-align: center"> <u>Analysis </u></h1>
+    <hr>
+    <div id="Analysis" class="Analysis" style="margin-top: 10px" >
+        <h1> <u>Analysis </u></h1>
        
         
     <div id="Beetles" class="Beetles">
@@ -178,6 +82,32 @@ library(matrixStats)
         <p> Firstly, We need to derive 200 Aperiodic Time Series and 200 Stable Aperiodic Time Series. We enter some Parameters and Initialise them.</p>
 
         <p> Each of the Time Series is converted to a row vector and then appended to a Data Frame which contains all of the Time Series.</p>
+
+        <h3><u>What is a Time Series?</u></h3>
+        <p> A time series is a collection of numerical data points that are measured at successive evenly spaced intervals of time and indexed in time order. Examples of time series include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, daily closing price of a company stock, monthly rainfall data and yearly sales figures.
+        <br>
+
+        Time series are made up of four components:
+        <ol>
+            <li>Trend variations - The predictable long-term pattern of the time series.</li>
+            <li>Seasonal variations- Repeated behaviour in the data that occurs at regular intervals.</li>
+            <li>Cyclical variations - Occurs when a series follows an up and down pattern that is not seasonal. </li>
+            <li>Random variations – Do not fall under any of the above three classifications. </li>
+
+        </ol></p>
+        <br>
+        <div class="row">
+          <div class="column">
+            <img src="./images/AperiodicTimeSeries.png" alt="Aperiodic Time Series" style="width: 100%">
+          </div>
+          <div class="column">
+            <img src="./images/StableTimeSeries.png" alt="Stable Time Series" style="width: 100%">
+          </div>
+        </div>
+
+        <br>
+        <p> The Time Series seen above is an example of a Dynamical System. Simply put a Dynamical System is a system in which a function describes the time dependence of a point in a geometrical space. For example the swinging of a clock pendulum. Dynamical Systems have hidden states that can be preserved in a time series output. We can use Takens theorem to analyse these hidden states. 
+        </p>
 
         <h3><u>Aperiodic Time Series</u></h3>
         <pre>
@@ -284,7 +214,59 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
     
     <h3><u> Persistent Homology Clustering</u></h3>
 
+    <p> In Mathematics a Simplex is a generalization of the notion of a triangle or tetrahedron to abritrary dimensions.
+            <ul>
+                <li>a 0-simplex is a point,</li>
+                <li>a 1-simplex is a line segment,</li>
+                <li>a 2-simplex is a triangle,</li>
+                <li>a 3-simplex is a tetrahedron,</li>
+            </ul>
+
+        In topology and combinatorics, it is common to “glue together” simplices to form a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">Simplicial Complex.</a> </p>
+
+        <img src="./images/simplices.png" class="center90 image-right" style="width: 70%;">
+        <p> If you would likw to learn more about the Basics of Persistent Homology then please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
+
+    <h3><u>Takens' Theorem:</u></h3>
+        <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
+        <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
+
+        <div class="Taken">
+        <p> Let \(M\) be a compact \(C^2\) differentiable manifold of dimension \(m\).
+        Let \(\Phi: M \rightarrow M\) be a \(C^2\)  diffeomorphism and let \(\mu: M \rightarrow \mathbb{R}\) be any \(C^2\) map. It is a generic property that the mapping 
+        \begin{equation}
+        \Phi_{\phi, \mu}: M \rightarrow \mathbb{R}^{2 m+1}, x \mapsto\left(\mu(x), \mu \phi(x), \mu \phi^{2}(x), \ldots, \mu \phi^{2 m}(x)\right)
+        \end{equation}
+        is an embedding.</p>
+        </div>
+        <div class="row">
+          <div class="column">
+            <img src="./images/TakensEmbeddingAperiodic.png" alt="Takens Embedding of Aperiodic Time Series" style="width: 100%">
+          </div>
+          <div class="column">
+            <img src="./images/TakensEmbeddingStable.png" alt="Takens Embedding of Stable Time Series" style="width: 100%">
+          </div>
+        </div>
+
     <p> Firstly, We will calculate the Homology and Betti Numbers for the Stable Time Series.</p>
+
+        <div id="BettiNumbers" class="BettiNumbers">
+        <h3> <u>Betti Numbers and Holes</u> </h3>
+        <p>A hole in a mathematical object is a topological structure which prevents the object from being continuously shrunk to a point. When dealing with topological spaces, a disconnectivity is interpreted as a hole in the space.
+        <br>
+        <p>In algebraic topology, the Betti numbers are used to distinguish topological spaces based on the connectivity of n-dimensional simplicial complexes.</p>
+        <p>Betti number: Bn = dim(ker(dn))-dim(image(dn+1)) </p>
+
+        Informally, the kth Betti number refers to the number of k-dimensional holes on a topological surface. The first few Betti numbers have the following definitions for 0-dimensional, 1-dimensional, and 2-dimensional simplicial complexes:
+
+        
+        <ol>
+            <li>b0 is the number of connected components</li>
+            <li>b1 is the number of one-dimensional or "circular" holes </li>
+            <li>b2 is the number of two-dimensional "voids" or "cavities" </li>
+            
+        </ol>
+    </div>
 
     <pre>
         <code>
@@ -306,6 +288,25 @@ for (i in 1:200){
 
         </code>
     </pre>
+
+    <div class="PersistenceDiagram">
+        <h3><u>Bar Codes and Persistence Diagrams</u> </h3>
+        <p>A bar code is a visual representation of persistent homology. Long bars represent features and short bars represent noise. </p>
+        
+        
+       
+        <p> A persistence diagram is very similar to a barcode, it captures the birth and death of features. The x-coordinate of a point represents when that point was born and the y-coordinate represents when that feature died. Features that are short lived occur close to the 45 degree line, while more persistent features occur at a greater distance from the 45 degree line.  </p>
+
+        <div class="row">
+          <div class="column">
+            <img src="./images/BarcodeAperiodic.png" alt="Aperiodic Persistence Diagram" style="width: 100%">
+          </div>
+          <div class="column">
+            <img src="./images/BarcodeStable.png" alt="Stable Persistence Diagram" style="width: 100%">
+          </div>
+        </div>
+
+    </div>
 
     <p> We need to sort our data by Correctly and Incorrectly Clustered</p>
 

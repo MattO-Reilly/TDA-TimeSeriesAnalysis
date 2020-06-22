@@ -10,6 +10,9 @@ pre code {
   padding: 10px;
   max-width: auto
 }
+h1{
+    color: crimson; 
+}
 /* The side navigation menu */
 .sidebar {
   margin: 0;
@@ -52,7 +55,7 @@ pre code {
 }
 
 .column {
-  flex: 50%;
+  flex: 30%;
   padding: 5px;
 }
 
@@ -151,4 +154,9 @@ div.content {
     padding: 10px;
     background-color: #eee;
     text-align: left;
+}
+.Beetles{
+    display: inline-block;
+    width: 100%
+    overflow: scroll;
 }
