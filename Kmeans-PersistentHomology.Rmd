@@ -5,7 +5,7 @@ output:
 word_document: default
 ---
   
-```{r setup, include=FALSE}
+  ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -13,25 +13,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 #ODE 
 library(deSolve)
-
-#Graphs and data Manipulation
+#Graphs and Data Manipulation
 library(tidyverse)
 library(data.table)
-
 #Confusion Matrix
 library(caret) 
-
 #Persistent Homology
 library(nonlinearTseries)
 library(TDAstats)
-
-#BettiNumbers
+#Betti Numbers
 library(matrixStats)
 ```
 
 
 
-#Aperiodic 
+#Create Aperiodic Time Series 
 ```{r}
 Time_Series_Data<- data.frame()
 for (i in 1:200){
@@ -39,74 +35,67 @@ for (i in 1:200){
   state2 <- c(L = sample(2:100,1), P = sample(2:100,1), A = sample(2:100,1))
   beetles2<-function(t, state, parameters) {
     with(as.list(c(state, parameters)),{
-      # rate of change
+      
       L1 <- b * A * exp((-c_el * L) - (c_ea * A))
       P1 <- L * (1 - u_l) 
       A1 <- (P * exp(-c_pa * A) + A * (1 - u_a)) 
       
-      # return the rate of change
+      
       list(c(L1, P1, A1))
-    }) # end with(as.list ...
+    }) 
   }
   
-Aperiodic_i <- ode(y = state2, times = seq(0, 200), func = beetles2, parms = parameters2, method = "iteration")
+  Aperiodic_i <- ode(y = state2, times = seq(0, 200), func = beetles2, parms = parameters2, method = "iteration")
   
-
-aperiodic <- as.data.frame(Aperiodic_i) %>% select(A)
-transposeAperiodic<-t(aperiodic)
-Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)  
+  aperiodic <- as.data.frame(Aperiodic_i) %>% select(A)
+  transposeAperiodic<-t(aperiodic)
+  Time_Series_Data <- rbind.data.frame(transposeAperiodic,Time_Series_Data)  
 }
 ```
 
 
 
-#Stable Equilibrium - Time series
+#Create Stable Time series
 ```{r}
 for (i in 1:200){
   parameters1 <- c(b = 7.48, c_ea = 0.009, c_pa = 0.004, c_el = 0.012, u_p = 0, u_l = 0.267, u_a = 0.73)
-
   state1 <- c(L = sample(2:100,1), P = sample(2:100,1), A = sample(2:100,1))
-  
-  #ODE's that model Beetles
   beetles1<-function(t, state, parameters) {
     with(as.list(c(state, parameters)),{
-      # rate of change
+      
       L1 <- b * A * exp((-c_el * L) - (c_ea * A))
       P1 <- L * (1 - u_l) 
       A1 <- (P * exp(-c_pa * A) + A * (1 - u_a)) 
       
-      # return the rate of change
+      
       list(c(L1, P1, A1))
-    }) # end with(as.list ...
+    }) 
   }
-
-  #Plotting A vs Time Graph
   
   Stable_i <- ode(y = state1, times = seq(0, 200), func = beetles1, parms = parameters1, method = "iteration")
   
-#Time_Series_Stable1 <- rbind.data.frame(Time_Series_Stable,Time_Series_Stable1)
-stable <- as.data.frame(Stable_i) %>% select(A)
-transposeStable<-t(stable)
-Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
+  stable <- as.data.frame(Stable_i) %>% select(A)
+  transposeStable<-t(stable)
+  Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
 }
 ```
 
 
 
-#Rename rows so we can Identify Time series as Stable or Aperiodic
+#Rename rows so we can identify time series as stable or aperiodic
 ```{r}
 (setattr(Time_Series_Data, "row.names", c(rep("Stable",200),rep("Aperiodic",200))))
 ```
 
 
-#K-Means
+#K-Means Clustering
 ```{r}
 set.seed(250)
 kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
 ```
 
 
-#ConfusionMatrix
+#Confusion Matrix k-means clustering
 ```{r}
 km_clusters <- kmtotal$cluster
 correct <- rep(c("1","2"), each=200)
@@ -115,13 +104,12 @@ cfm
 ```
 
 
-#Analysis
+#Analysis of k-means clustering results
 ```{r}
 TP <- cfm[1,1]
 FN <- cfm[1,2]
 FP <- cfm[2,1]
 TN <- cfm[2,2]
-
 Recall <- TP/(TP+FN)
 Specificity <- TN/(TN+FP)
 Precision <- TP/(TP+FP)
@@ -133,34 +121,29 @@ F1_Score <- (2*TP)/((2*TP)+FP+FN)
 MCC <- (TP*TN-FP*FN)/sqrt((TP+FP)*(TP+FN)*(TN+FP)*(TN+FN))
 ```
 
-#calculate homolgy of stable
+#Calculate persistent homolgy of stable time series
 ```{r}
 pers_stable <- data.frame()
 for (i in 1:200){
-x<- data.matrix(Time_Series_Data[i,])
-a<- buildTakens(x,2,3)
-hom <- calculate_homology(a,return_df = TRUE)
-hom <- hom %>%
-  mutate(persistence = death-birth) %>%
-  mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
-hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
-hom_matrix <- as.data.frame(hom_matrix) 
-p1 <- hom_matrix[hom_matrix$persistent == '1',] 
-
-pers_stable <- rbind.data.frame(pers_stable,p1) 
+  x<- data.matrix(Time_Series_Data[i,])
+  a<- buildTakens(x,2,3)
+  hom <- calculate_homology(a,return_df = TRUE)
+  hom <- hom %>%
+    mutate(persistence = death-birth) %>%
+    mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
+  hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
+  hom_matrix <- as.data.frame(hom_matrix) 
+  p1 <- hom_matrix[hom_matrix$persistent == '1',] 
+  pers_stable <- rbind.data.frame(pers_stable,p1) 
 }
-
-
 ```
-#sort by correct or incorrect for stable
+#Sort by correct or incorrect classification for stable time series
 check_stable <- pers_stable[pers_stable$dimension == 0,] 
 stable_correct_hom <- nrow(check_stable)
 stable_incorrect_hom <- 200 - stable_correct_hom
 
 ```
-
-
-#calculate homolgy of aperiodic
+#Calculate persistent homolgy of aperiodic time series
 ```{r}
 pers_aperiodic <- data.frame()
 for (i in 201:400){
@@ -176,16 +159,14 @@ for (i in 201:400){
   
   pers_aperiodic <- rbind.data.frame(pers_aperiodic,p2)  
 }
-
 ```
 
-#sort by correct or incorrect for aperiodic
+#Sort by correct or incorrect classification for aperiodic time series
 check_aperiodic <- pers_aperiodic[pers_aperiodic$dimension == 1,] 
 aperiodic_correct_hom <- nrow(check_aperiodic)
 aperiodic_incorrect_hom <- 200 - aperiodic_correct_hom
 ```
-
-#confusion matrix for homology
+#Confusion Matrix persistent homology
 cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect_hom,aperiodic_correct_hom))
 cfm_hom
 ```
