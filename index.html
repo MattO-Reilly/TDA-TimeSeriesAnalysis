@@ -104,6 +104,14 @@ library(matrixStats)
             <li>Cyclical variations - Occurs when a series follows an up and down pattern that is not seasonal. </li>
             <li>Random variations – Do not fall under any of the above three classifications. </li>
         <p> Each time series is then converted to a row vector and appended to a data frame which contains all 400 time series required to do analysis.</p>
+        <p> \begin{equation}
+            \begin{array}{l}
+            L_{t+1}=b \cdot A_{t} \cdot \exp \left(-c_{e a} A_{t}-c_{e \ell} L_{t}+E_{1 t}\right) \\
+            P_{t+1}=L_{t}\left(1-\mu_{\ell}\right) \exp \left(E_{2 t}\right) \\
+            A_{t+1}=\left(P_{t} \exp \left(-c_{p a} A_{t}\right)+A_{t}\left(1-\mu_{a}\right)\right) \exp \left(E_{3 t}\right)
+            \end{array}
+            \end{equation}
+        </p>
         
         </ol></p>
         <br>
@@ -246,7 +254,7 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
 
 
         <div class="PersistentHomology" id="PersistentHomology">
-    <h3><u> Simplicial Complex.</u></h3>
+    <h3><u> Simplicial Complices.</u></h3>
 
     <p> A simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.
             <ul>
@@ -262,7 +270,7 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
         <p> A simplicial complex is a union of simplices satisfying certain conditions. </p>
         <p> If you would like more information about persistent homology please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
     </div>
-    
+
     <p> Next, we will calculate the the persistent homology and Betti numbers for the stable time series.</p>
 
         <div id="BettiNumbers" class="BettiNumbers">
