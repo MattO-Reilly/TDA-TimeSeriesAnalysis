@@ -193,9 +193,9 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
         </pre>
 
         <div class="KMeans" id="KMeans">
-        <h3><u> K-Means Clustering</u></h3>
+        <h3><u> K-means clustering.</u></h3>
 
-        <p> The K-Means Clustering Algorithm is applied to our Time Series as follows; We are attempting to group the data into Aperiodic and Stable.</p>
+        <p> Using the k-means clustering algorithm we attempt to correctly classify our time series data into two clusters: aperiodic and stable.</p>
 
         <pre>
             <code>
@@ -205,7 +205,7 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
             </code>
         </pre>
 
-        <p> We can analyse the K-Means Clustering Algorithm by looking at a Confusion Matrix of the Data.</p></div>
+        <p> We can analyse the results of the k-means clustering algorithm using a confusion matrix which shows the number of true positives, true negatives, false positives, and false negatives.</p></div>
        
     <div id="ConfusionMatrix" class="ConfusionMatrix" >
         <p>
@@ -220,7 +220,7 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
         </p>
     </div>
 
-    <p> All 200 Stable Time Series are correctly clustered. However, When the algorithm clusters Aperiodic Time Series it can't cluster them correctly. </p>
+    <p> From the confusion matrix above it can be seen that all 200 stable time series are correctly clustered. However, only 81 of the aperiodic time series are correctly classified  </p>
 
     <div class="PersistentHomology" id="PersistentHomology">
     <h3><u> Persistent Homology Clustering</u></h3>
