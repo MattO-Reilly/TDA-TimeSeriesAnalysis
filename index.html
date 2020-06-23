@@ -319,7 +319,7 @@ for (i in 1:200){
 
     </div>
 
-    <p> We need to sort our data by Correctly and Incorrectly Clustered</p>
+    <p> Sort data by correct and incorrect classifications.</p>
 
     <pre>
         <code>
@@ -329,7 +329,9 @@ stable_incorrect_hom <- 200 - stable_correct_hom
         </code>
     </pre>
 
-    <p>Next, We calculate the homology of aperiodic</p>
+    <p>Next, we will calculate the the persistent homology and Betti numbers for the aperiodic time series.
+
+</p>
 
     <pre>
         <code>
@@ -350,7 +352,7 @@ for (i in 201:400){
         </code>
     </pre>
 
-    <p>Again, We need to sort our data by Correctly and Incorrectly Clustered.
+    <p>Again, sort data by correct and incorrect classifications.
 
     <pre>
         <code>
@@ -360,7 +362,7 @@ aperiodic_incorrect_hom <- 200 - aperiodic_correct_hom
         </code>
     </pre>
 
-    <p> To compare our results with K Means we make a confusion matrix for the Persistent Homology </p>
+    <p> We can analyse the results of persistent homology using a confusion matrix. This allows for easy comparison with k-means clustering. </p>
 
     <pre>
         <code>
