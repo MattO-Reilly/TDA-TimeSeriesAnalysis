@@ -223,9 +223,9 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
     <p> From the confusion matrix above it can be seen that all 200 stable time series are correctly clustered. However, only 81 of the aperiodic time series are correctly classified  </p>
 
     <div class="PersistentHomology" id="PersistentHomology">
-    <h3><u> Persistent Homology Clustering</u></h3>
+    <h3><u> Simplicial Complex.</u></h3>
 
-    <p> In Mathematics a Simplex is a generalization of the notion of a triangle or tetrahedron to abritrary dimensions.
+    <p> A simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.
             <ul>
                 <li>a 0-simplex is a point,</li>
                 <li>a 1-simplex is a line segment,</li>
@@ -233,10 +233,11 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
                 <li>a 3-simplex is a tetrahedron,</li>
             </ul>
 
-        In topology and combinatorics, it is common to “glue together” simplices to form a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">Simplicial Complex.</a> </p>
+        In topology and combinatorics, it is common to “glue together” simplices to form a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex.</a> </p>
 
         <img src="./images/simplices.png" class="center90 image-right" style="width: 100%;">
-        <p> If you would likw to learn more about the Basics of Persistent Homology then please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
+        <p> A simplicial complex is a union of simplices satisfying certain conditions. </p>
+        <p> If you would like more information about persistent homology please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
     </div>
 
     <h3><u>Takens' Theorem:</u></h3>
@@ -260,13 +261,11 @@ kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
           </div>
         </div>
 
-    <p> Firstly, We will calculate the Homology and Betti Numbers for the Stable Time Series.</p>
+    <p> Next, we will calculate the the persistent homology and Betti numbers for the stable time series.</p>
 
         <div id="BettiNumbers" class="BettiNumbers">
-        <h3> <u>Betti Numbers and Holes</u> </h3>
-        <p>A hole in a mathematical object is a topological structure which prevents the object from being continuously shrunk to a point. When dealing with topological spaces, a disconnectivity is interpreted as a hole in the space.
-        <br>
-        <p>In algebraic topology, the Betti numbers are used to distinguish topological spaces based on the connectivity of n-dimensional simplicial complexes.</p>
+        <h3> <u>Betti Numbers.</u> </h3>
+        <p>In algebraic topology, Betti numbers are used to distinguish topological spaces based on the connectivity of n-dimensional simplicial complexes.</p>
         <p>Betti number: Bn = dim(ker(dn))-dim(image(dn+1)) </p>
 
         Informally, the kth Betti number refers to the number of k-dimensional holes on a topological surface. The first few Betti numbers have the following definitions for 0-dimensional, 1-dimensional, and 2-dimensional simplicial complexes:
@@ -302,7 +301,7 @@ for (i in 1:200){
     </pre>
 
     <div class="PersistenceDiagram">
-        <h3><u>Bar Codes and Persistence Diagrams</u> </h3>
+        <h3><u>Persistent Homology: Bar Codes and Persistence Diagrams</u> </h3>
         <p>A bar code is a visual representation of persistent homology. Long bars represent features and short bars represent noise. </p>
         
         
@@ -320,7 +319,7 @@ for (i in 1:200){
 
     </div>
 
-    <p> We need to sort our data by Correctly and Incorrectly Clustered</p>
+    <p> Sort data by correct and incorrect classifications.</p>
 
     <pre>
         <code>
@@ -330,7 +329,9 @@ stable_incorrect_hom <- 200 - stable_correct_hom
         </code>
     </pre>
 
-    <p>Next, We calculate the homology of aperiodic</p>
+    <p>Next, we will calculate the the persistent homology and Betti numbers for the aperiodic time series.
+
+</p>
 
     <pre>
         <code>
@@ -351,7 +352,7 @@ for (i in 201:400){
         </code>
     </pre>
 
-    <p>Again, We need to sort our data by Correctly and Incorrectly Clustered.
+    <p>Again, sort data by correct and incorrect classifications.
 
     <pre>
         <code>
@@ -361,7 +362,7 @@ aperiodic_incorrect_hom <- 200 - aperiodic_correct_hom
         </code>
     </pre>
 
-    <p> To compare our results with K Means we make a confusion matrix for the Persistent Homology </p>
+    <p> We can analyse the results of persistent homology using a confusion matrix. This allows for easy comparison with k-means clustering. </p>
 
     <pre>
         <code>
