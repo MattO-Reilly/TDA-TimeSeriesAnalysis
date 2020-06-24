@@ -54,40 +54,34 @@ p1 <- hom_matrix[hom_matrix$persistent == '1',]
 
 if (i == 1){
   Flute_homology1<-rbind.data.frame(Flute_homology1,p1)
-  bar1 <- bar
+  Flute_A <- bar
 }
 if (i == 2){
   Flute_homology2<-rbind.data.frame(Flute_homology2,p1)
-  bar2 <- bar
+  Flute_B <- bar
 }
 if (i ==3){
   Flute_homology3<-rbind.data.frame(Flute_homology3,p1)
-  bar3 <- bar
+  Flute_C <- bar
 }
 if (i ==4){
   Flute_homology4<-rbind.data.frame(Flute_homology4,p1)
-  bar4 <- bar
+  Flute_D <- bar
 }
 if (i ==5){
   Flute_homology5<-rbind.data.frame(Flute_homology5,p1)
-  bar5 <- bar
+  Flute_E <- bar
 }
 if (i ==6){
   Flute_homology6<-rbind.data.frame(Flute_homology6,p1)
-  bar6 <- bar
+  Flute_F <- bar
 }
 if (i ==7){
   Flute_homology7<-rbind.data.frame(Flute_homology7,p1)
-  bar7 <- bar
+  Flute_G <- bar
 }}
 
-bar1
-bar2
-bar3
-bar4
-bar5
-bar6
-bar7
+
 ```
 ```{r}
 clarinet_data <- read.csv("./clarinet2000.csv")
@@ -124,40 +118,34 @@ p1 <- hom_matrix[hom_matrix$persistent == '1',]
 
 if (i == 1){
   clarinet_homology1<-rbind.data.frame(clarinet_homology1,p1)
-  bar1 <- bar
+  Clarinet_A <- bar
 }
 if (i == 2){
   clarinet_homology2<-rbind.data.frame(clarinet_homology2,p1)
-  bar2 <- bar
+  Clarinet_B <- bar
 }
 if (i ==3){
   clarinet_homology3<-rbind.data.frame(clarinet_homology3,p1)
-  bar3 <- bar
+  Clarinet_C <- bar
 }
 if (i ==4){
   clarinet_homology4<-rbind.data.frame(clarinet_homology4,p1)
-  bar4 <- bar
+  Clarinet_D <- bar
 }
 if (i ==5){
   clarinet_homology5<-rbind.data.frame(clarinet_homology5,p1)
-  bar5 <- bar
+  Clarinet_E <- bar
 }
 if (i ==6){
   clarinet_homology6<-rbind.data.frame(clarinet_homology6,p1)
-  bar6 <- bar
+  Clarinet_F <- bar
 }
 if (i ==7){
   clarinet_homology7<-rbind.data.frame(clarinet_homology7,p1)
-  bar7 <- bar
+  Clarinet_G <- bar
 }}
 
-bar1
-bar2
-bar3
-bar4
-bar5
-bar6
-bar7
+
 ```
 ```{r}
 saxophone_data <- read.csv("./Tenor Saxophone 2000.csv")
@@ -168,7 +156,7 @@ colnames(saxophone_data) <- c("A","B","C","D","E","F","G")
 ```{r}
 transposed_saxophone_data<-t(saxophone_data) #Converts Column Vectors into Row Vectors
 ```
-```{r}
+```
 saxophone_homology1 <- data.frame()
 saxophone_homology2 <- data.frame()
 saxophone_homology3 <- data.frame()
