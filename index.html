@@ -44,6 +44,19 @@
         
     <div id="Background_Reading" class='Background_Reading'>
         <h1><u>Background</u></h1>
+        
+        <div id="TimeSeries">
+        <h3><u>What is a Time Series?</u></h3>
+        <p> A time series is a collection of numerical data points that are measured at successive evenly spaced intervals of time and indexed in time order. Examples of time series include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, daily closing price of a company stock, monthly rainfall data and yearly sales figures.
+        <br>
+
+        Time series are made up of four components:
+        <ol>
+            <li>Trend variations - The predictable long-term pattern of the time series.</li>
+            <li>Seasonal variations- Repeated behaviour in the data that occurs at regular intervals.</li>
+            <li>Cyclical variations - Occurs when a series follows an up and down pattern that is not seasonal. </li>
+            <li>Random variations – Do not fall under any of the above three classifications. </li>
+        
         <p> For background information please consult the following links: 
         <ul>
             <li><a href="https://en.wikipedia.org/wiki/Time_series"> Time Series Data</a></li>
@@ -92,17 +105,7 @@ library(matrixStats)
 
         <p> First, we programmed a function to create 200 aperiodic time series and 200 stable time series.</p>
 
-        <div id="TimeSeries">
-        <h3><u>What is a Time Series?</u></h3>
-        <p> A time series is a collection of numerical data points that are measured at successive evenly spaced intervals of time and indexed in time order. Examples of time series include the continuous monitoring of a person’s heart rate, hourly readings of air temperature, daily closing price of a company stock, monthly rainfall data and yearly sales figures.
-        <br>
-
-        Time series are made up of four components:
-        <ol>
-            <li>Trend variations - The predictable long-term pattern of the time series.</li>
-            <li>Seasonal variations- Repeated behaviour in the data that occurs at regular intervals.</li>
-            <li>Cyclical variations - Occurs when a series follows an up and down pattern that is not seasonal. </li>
-            <li>Random variations – Do not fall under any of the above three classifications. </li>
+        
         <p> Each time series is then converted to a row vector and appended to a data frame which contains all 400 time series required to do analysis.</p>
         <p> \begin{equation}
             \begin{array}{l}
