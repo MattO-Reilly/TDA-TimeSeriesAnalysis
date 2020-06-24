@@ -105,9 +105,10 @@ library(matrixStats)
         </pre>
 
         <p> First, we programmed a function to create 200 aperiodic time series and 200 stable time series.</p>
-
+        <p> Fixed parameters were used with mu_{a} = 0.73 for stable time seresi and mu_{a} = 0.96 for aperiodic time series and the starting point for each time series was randomized. </p>
+        <p> The following euqatiosn were used to model the values of larvae, pupae and adults beetles respectivley.  
         
-        <p> Each time series is then converted to a row vector and appended to a data frame which contains all 400 time series required to do analysis.</p>
+        
         <p> \begin{equation}
             \begin{array}{l}
             L_{t+1}=b \cdot A_{t} \cdot \exp \left(-c_{e a} A_{t}-c_{e \ell} L_{t}+E_{1 t}\right) \\
@@ -116,7 +117,7 @@ library(matrixStats)
             \end{array}
             \end{equation}
         </p>
-        
+        <p> Each time series is then converted to a row vector and appended to a data frame which contains all 400 time series required to do analysis.</p>
         </ol></p>
         <br>
         <div class="row">
