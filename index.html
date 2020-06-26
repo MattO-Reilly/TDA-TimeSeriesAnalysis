@@ -217,6 +217,11 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
 set.seed(250)
 kmtotal <- kmeans(Time_Series_Data, 2, iter.max = 10, nstart = 1)
 
+#Confusion matrix
+km_clusters <- kmtotal$cluster
+correct <- rep(c("1","2"), each=200)
+cfm <- table(correct,km_clusters)
+
             </code>
         </pre>
 
