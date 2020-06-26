@@ -212,7 +212,7 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
 
         <div class="KMeans" id="KMeans">
         <h1><u>Part 2: Analysis of time series.</u></h1>
-        <h3><u> K-means clustering.</u></h3>
+        <h3><u> K-means clustering</u></h3>
 
         <p> The k-means clustering algorithm was used to show comparison between persistent homology and a more traditional classification method. Using the k-means clustering alogrithim we attempt to correctly classify the time series data into two clusters: aperiodic and stable.</p>
 
@@ -247,7 +247,7 @@ cfm <- table(correct,km_clusters)
     <p> From the confusion matrix above it can be seen that all 200 stable time series are correctly clustered. However, only 81 of the aperiodic time series are correctly classified.  </p>
 
 
-    <h3><u>Takens' Theorem:</u></h3>
+    <h3><u>Takens' Theorem</u></h3>
         <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
         <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
 
@@ -270,7 +270,7 @@ cfm <- table(correct,km_clusters)
 
 
         <div class="PersistentHomology" id="PersistentHomology">
-    <h3><u> Simplicial Complices.</u></h3>
+    <h3><u> Simplicial Complices</u></h3>
 
     <p> A simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions.
             <ul>
@@ -295,7 +295,7 @@ cfm <- table(correct,km_clusters)
     <p> Next, we will calculate the the persistent homology and Betti numbers for the stable time series.</p>
 
         <div id="BettiNumbers" class="BettiNumbers">
-        <h3> <u>Betti Numbers.</u> </h3>
+        <h3> <u>Betti Numbers</u> </h3>
         <p>In algebraic topology, Betti numbers are used to distinguish topological spaces based on the connectivity of n-dimensional simplicial complexes.</p>
         <p>Betti number: Bn = dim(ker(dn))-dim(image(dn+1)) </p>
 
@@ -431,7 +431,7 @@ cfm_hom
 </div>
 
  <div class="First Conclusion">
-        <h1><u>Part 3: Conclusion from first example.</u> </h1>
+        <h1><u>Part 3: Conclusion from first example</u> </h1>
         <p>Persistent homology is more effective at classifing the given time series data than k-means clustering. Both k-means clustering and persistent homology classify all 200 stable time series correctly. However there is quite a significant difference when it comes to classifing aperiodic time series. K-means clustering only correctly classifies 81 aperiodic time series whereas persistent homology correctly classifies 181 aperiodic time series. This shows how effective persistent homology is over k-means clustering at classifing time series data </p>
                               
         
