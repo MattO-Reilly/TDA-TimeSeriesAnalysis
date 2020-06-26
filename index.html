@@ -310,8 +310,8 @@ for (i in 1:200){
 
     hom <- calculate_homology(a,return_df = TRUE)
     hom <- hom %>%
-    mutate(persistence = death-birth) %>%
-    mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
+        mutate(persistence = death-birth) %>%
+        mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
 
     hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
     hom_matrix <- as.data.frame(hom_matrix) 
