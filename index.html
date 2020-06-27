@@ -308,29 +308,10 @@ cfm <- table(correct,km_clusters)
             <li>b<sub>2</sub> is the number of two-dimensional "voids" or "cavities" </li>
             
         </ol>
-            <p> Next, we construct a Takens embedding and calculate persistent homology and Betti numbers for the stable time series.</p>
+            
     </div>
 
-    <pre>
-        <code>
-pers_stable <- data.frame()
-for (i in 1:200){
-    x<- data.matrix(Time_Series_Data[i,])
-    a<- buildTakens(x,2,3)
-
-    hom <- calculate_homology(a,return_df = TRUE)
-    hom <- hom %>%
-        mutate(persistence = death-birth) %>%
-        mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
-
-    hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
-    hom_matrix <- as.data.frame(hom_matrix) 
-    p1 <- hom_matrix[hom_matrix$persistent == '1',] 
-    pers_stable <- rbind.data.frame(pers_stable,p1) 
-}
-
-        </code>
-    </pre>
+ 
 
     <div class="PersistenceDiagram">
         <h3><u>Persistent Homology: Bar Codes and Persistence Diagrams</u> </h3>
@@ -366,17 +347,34 @@ for (i in 1:200){
 
     </div>
 
-    <p> Sort data by correct and incorrect classifications.</p>
+    <p> Next, we construct a Takens embedding and calculate persistent homology and Betti numbers for the stable time series. Then sort the data by correct and incorrect classifications.</p>
 
     <pre>
         <code>
+pers_stable <- data.frame()
+for (i in 1:200){
+    x<- data.matrix(Time_Series_Data[i,])
+    a<- buildTakens(x,2,3)
+
+    hom <- calculate_homology(a,return_df = TRUE)
+    hom <- hom %>%
+        mutate(persistence = death-birth) %>%
+        mutate(persistent = ifelse(persistence > max(persistence)-0.00001, 1,0))
+
+    hom_matrix <- data_frame(hom) %>% select(dimension, persistent)
+    hom_matrix <- as.data.frame(hom_matrix) 
+    p1 <- hom_matrix[hom_matrix$persistent == '1',] 
+    pers_stable <- rbind.data.frame(pers_stable,p1) 
+
+
+#Sort the data by correct and incorrect classifications        
 check_stable <- pers_stable[pers_stable$dimension == 0,]
 stable_correct_hom <- nrow(check_stable)
 stable_incorrect_hom <- 200 - stable_correct_hom
         </code>
     </pre>
 
-    <p>Next, we construct a Takens embedding and calculate persistent homology and Betti numbers for the aperiodic time series.
+    <p>Do the same for the aperiodic time series.
 
 </p>
 
@@ -396,18 +394,16 @@ for (i in 201:400){
   
     pers_aperiodic <- rbind.data.frame(pers_aperiodic,p2)  
 }
+
+    #Sort the data by correct and incorrect classifications
+    check_aperiodic <- pers_aperiodic[pers_aperiodic$dimension == 1,] 
+    aperiodic_correct_hom <- nrow(check_aperiodic)
+    aperiodic_incorrect_hom <- 200 - aperiodic_correct_hom
+
         </code>
     </pre>
 
-    <p>Again, sort data by correct and incorrect classifications.
-
-    <pre>
-        <code>
-check_aperiodic <- pers_aperiodic[pers_aperiodic$dimension == 1,] 
-aperiodic_correct_hom <- nrow(check_aperiodic)
-aperiodic_incorrect_hom <- 200 - aperiodic_correct_hom
-        </code>
-    </pre>
+    
 
     <p> We can analyse the results of persistent homology using a confusion matrix. This allows for easy comparison with k-means clustering. </p>
 
