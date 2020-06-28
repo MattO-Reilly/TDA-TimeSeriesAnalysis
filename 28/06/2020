@@ -1,0 +1,104 @@
+```{r}
+library(nonlinearTseries)
+library(TDAstats)
+library(tidyverse)
+```
+
+```{r}
+
+#flute
+average_list_flute <- c()
+Flute_full_note <- read.csv("Flute A full time series.csv")
+for (i in 1:20) {
+  ai <- sample(1:37999,1,replace = FALSE, prob = NULL)
+  bi <- ai + 1000
+  sample_sequence_ai <- Flute_full_note[ai:bi,]
+
+  Flute_homology <- data.frame()
+
+  flute_A4_matrix <- data.matrix(sample_sequence_ai)
+  tak <- buildTakens(flute_A4_matrix,2,3)
+  plot(tak)
+  hom <- calculate_homology(tak,return_df = TRUE) 
+  hom_matrix <- calculate_homology(tak,return_df = FALSE) 
+  bar <- plot_barcode(hom_matrix)
+  hom <- hom %>%
+    mutate(persistence = death-birth) %>%
+    mutate(persistent = ifelse(persistence > 0.025, 1,0))
+  hom_matrix <- data.frame(hom) %>% select(dimension, persistent)
+  hom_matrix <- as.data.frame(hom_matrix) 
+  p1 <- hom_matrix[hom_matrix$persistent == '1',] 
+  Flute_homology<-rbind.data.frame(Flute_homology,p1)
+
+  Flute_homology
+  avg <- nrow(Flute_homology)
+  average_list_flute <- append(average_list_flute,avg)
+}
+average_list_flute
+avg_betti_number_flute <- sum(average_list_flute)/length(average_list_flute)
+avg_betti_number_flute
+
+```
+```{r}
+
+#clarinet
+average_list_clarinet <- c()
+Clarinet_full_note <- read.csv("Clarinet A full time series.csv")
+for (i in 1:20) {
+  ai2 <- sample(1:95000,1,replace = FALSE, prob = NULL)
+  bi2 <- ai2 + 1000
+  sample_sequence_ai2 <- Clarinet_full_note[ai2:bi2,]
+
+  Clarinet_homology <- data.frame()
+
+  Clarinet_A4_matrix <- data.matrix(sample_sequence_ai2)
+  tak2 <- buildTakens(Clarinet_A4_matrix,2,3)
+  plot(tak2)
+  hom2 <- calculate_homology(tak2,return_df = TRUE) 
+  hom_matrix2 <- calculate_homology(tak2,return_df = FALSE) 
+  bar2 <- plot_barcode(hom_matrix2)
+  hom2 <- hom2 %>%
+    mutate(persistence = death-birth) %>%
+    mutate(persistent = ifelse(persistence > 0.025, 1,0))
+  hom_matrix2 <- data.frame(hom2) %>% select(dimension, persistent)
+  hom_matrix2 <- as.data.frame(hom_matrix2) 
+  p2 <- hom_matrix2[hom_matrix2$persistent == '1',] 
+  Clarinet_homology<-rbind.data.frame(Clarinet_homology,p2)
+
+  Clarinet_homology
+  avg2 <- nrow(Clarinet_homology)
+  average_list_clarinet <- append(average_list_clarinet,avg2)
+}
+average_list_clarinet
+avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clarinet)
+avg_betti_number_clarinet
+```
+```{r}
+Flute_full_note <- read.csv("Flute A full time series.csv")
+for (i in 1:30) {
+  xi <- sample(1:37999,1,replace = FALSE, prob = NULL)
+  yi <- xi + 1000
+  sample_sequence_xi <- Flute_full_note[xi:yi,]
+
+  Flute_homology <- data.frame()
+
+  flute_A4_matrix_test <- data.matrix(sample_sequence_xi)
+  }
+```
+
+```{r}
+for (i in 30) {
+  xi2 <- sample(1:95000,1,replace = FALSE, prob = NULL)
+  yi2 <- xi2 + 1000
+  sample_sequence_xi2 <- Clarinet_full_note[xi2:yi2,]
+
+  Clarinet_homology <- data.frame()
+
+  Clarinet_A4_matrix_test <- data.matrix(sample_sequence_xi2)
+  
+}
+```
+```{r}
+test_data_set<- rbind(flute_A4_matrix_test,Clarinet_A4_matrix_test)
+
+```
