@@ -448,7 +448,11 @@ cfm_hom
         </p>
         <p> A sample output from Audacity is seen below. A time series can be clearly seen in the track bar. This Time series is exported in a CSV file and imported into R.</p>
         <img src="./images/Audacity.png" style="width: 100%">
-        <p> The following code is used to Takens Embed the Time Series and then Calculate its homology and Betti Numbers. It is important to note that we are distinguishing instruments by the number of one dimensional holes. 
+        
+        </div> <!-- PART 1 Section Musical Instruments -->
+<div id="AnalysisMusical">
+    <h2><u> Part 2: Analysis </u></h2>
+    <p> The following code is used to Takens Embed the Time Series and then Calculate its homology and Betti Numbers. It is important to note that we are distinguishing instruments by the number of one dimensional holes. 
         </p>
         <pre><code>
 average_list_flute <- c()
@@ -484,7 +488,7 @@ average_list_flute
 avg_betti_number_flute <- sum(average_list_flute)/length(average_list_flute)
 avg_betti_number_flute
         </code></pre>
-    </div> <!-- PART 1 Section Musical Instruments -->
+    
     <p> Now we can do the same for another instrument</p>
     <pre><code>
 average_list_clarinet <- c()
