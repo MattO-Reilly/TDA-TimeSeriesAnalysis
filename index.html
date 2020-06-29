@@ -441,8 +441,10 @@ cfm_hom
     <div id="Musical" class="Musical">
         <p>Another application of Persistent Homology can be classifying instruments based on its persistence barcodes. Our aim is to try and classify an Instrument by its note and Accurately be able to predict the istrument by its barcode. To analyse the data of each instrument we used Audacity to get the Time Series for the data. Which can be downloaded<a href="https://www.audacityteam.org"> here.</a>
         </p>
-        <img src="./images/Audacity.png">
-        <p> </p>
+        <p> A sample output from Audacity is seen below. A time series can be clearly seen in the track bar. This Time series is exported in a CSV file and imported into R.</p>
+        <img src="./images/Audacity.png" style="width: 100%">
+        <p> The following code is used to Takens Embed the Time Series and then Calculate the homology and Betti Numbers. It is important to note that we are distinguishing instruments by the number of one dimensional holes. 
+        </p>
         <pre><code>
 average_list_flute <- c()
 Flute_full_note <- read.csv("./FluteAfull.csv")
