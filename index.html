@@ -453,6 +453,15 @@ The files were then processed through audacity where using the sample data expor
         </div> <!-- PART 1 Section Musical Instruments -->
 <div id="AnalysisMusical">
     <h2><u> Part 2: Analysis </u></h2>
+    <p>The following R Libraries were required.</p>
+        <pre>
+            <code>
+library(nonlinearTseries)
+library(TDAstats)
+library(tidyverse)
+library(data.table)
+            </code>
+        </pre>
     <p> The following code is used to Takens Embed the Time Series and then Calculate its homology and Betti Numbers. It is important to note that we are distinguishing instruments by the number of one dimensional holes. 
         </p>
         <pre><code>
