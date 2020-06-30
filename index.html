@@ -619,14 +619,22 @@ for (i in 1:30) {
     flute_assign <- append(flute_assign,1)
 }
 }
-correct_flute <-length(flute_assign)
-correct_flute
-incorrect_flute <- 30-length(flute_assign)
-incorrect_flute
+
 
 
             </code>
         </pre>
+        
+   <p>flute correct/incorrect</p>
+        <pre>
+            <code>
+correct_flute <-length(flute_assign)
+correct_flute
+incorrect_flute <- 30-length(flute_assign)
+incorrect_flute
+            </code>
+        </pre>  
+   
         
   <p>Analyse clarinet</p>
         <pre>
@@ -658,14 +666,27 @@ for (i in 31:60) {
     flute_assign1 <- append(flute_assign1,1)
   }
 }
+
+            </code>
+        </pre>    
+ 
+  <p>clarinet correct/incorrect</p>
+        <pre>
+            <code>
 correct_clarinet <- length(clarinet_assign1)
 correct_clarinet
 incorrect_clarinet <- 30 - length(clarinet_assign1)
 incorrect_clarinet
-
             </code>
-        </pre>       
+        </pre>
          
+ 
+ <p>Create confusion matrix</p>
+        <pre>
+            <code>
+cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarinet))
+            </code>
+        </pre>
  
  
 </div><!-- part 2 analysis Example Musical Instruments-->
