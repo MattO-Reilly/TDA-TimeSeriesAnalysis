@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<link href="style.css" rel="stylesheet" type="text/css"/>
+<link href="./Website/style.css" rel="stylesheet" type="text/css"/>
 <head>
     <meta charset="utf-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
 
     <div id="Aim" class='Aim'>
         <h1><u>Aim</u></h1>
-        <p> This project aims to introduce students of mathematics to the use of persistent homology for time series classification through two illustrative examples. We will investigate the usefulness and effectiveness of  persistent homology in comparison to more traditional methods such as k-means clustering to classify time series. Investigations will be conducted on data from flour beetle populations and musical instruments based on two recent research papers <a href="./time-series-topology.pdf">"Persistent homology for time series and spatial data clustering" </a> - Cássio M.M. Pereira/Rodrigo F. de Mello and <a href="./music-topology.pdf"> “Computational Topology Techniques for Characterizing Time-Series Data” </a> - University of Colorado. </p> 
+        <p> This project aims to introduce students of mathematics to the use of persistent homology for time series classification through two illustrative examples. We will investigate the usefulness and effectiveness of  persistent homology in comparison to more traditional methods such as k-means clustering to classify time series. Investigations will be conducted on data from flour beetle populations and musical instruments based on two recent research papers <a href="./Website/time-series-topology.pdf">"Persistent homology for time series and spatial data clustering" </a> - Cássio M.M. Pereira/Rodrigo F. de Mello and <a href="./Website/music-topology.pdf"> “Computational Topology Techniques for Characterizing Time-Series Data” </a> - University of Colorado. </p> 
     </div>
         
     <div id="Background_Reading" class='Background_Reading'>
@@ -126,10 +126,10 @@ library(matrixStats)
         <br>
         <div class="row">
           <div class="column">
-            <img src="./images/AperiodicTimeSeries.png" alt="Aperiodic Time Series" style="width: 100%">
+            <img src="./Website/images/AperiodicTimeSeries.png" alt="Aperiodic Time Series" style="width: 100%">
           </div>
           <div class="column">
-            <img src="./images/StableTimeSeries.png" alt="Stable Time Series" style="width: 100%">
+            <img src="./Website/images/StableTimeSeries.png" alt="Stable Time Series" style="width: 100%">
           </div>
         </div>
         </div>
@@ -263,10 +263,10 @@ cfm <- table(correct,km_clusters)
         </div>
         <div class="row">
           <div class="column">
-            <img src="./images/TakensEmbeddingAperiodic.png" alt="Takens Embedding of Aperiodic Time Series" style="width: 100%">
+            <img src="./Website/images/TakensEmbeddingAperiodic.png" alt="Takens Embedding of Aperiodic Time Series" style="width: 100%">
           </div>
           <div class="column">
-            <img src="./images/TakensEmbeddingStable.png" alt="Takens Embedding of Stable Time Series" style="width: 100%">
+            <img src="./Website/images/TakensEmbeddingStable.png" alt="Takens Embedding of Stable Time Series" style="width: 100%">
           </div>
         </div>
 
@@ -284,12 +284,12 @@ cfm <- table(correct,km_clusters)
 
          </p>
 
-        <img src="./images/simplices.png" class="center90 image-right" style="width: 100%;">
+        <img src="./Website/images/simplices.png" class="center90 image-right" style="width: 100%;">
         
         <p> In topology and combinatorics, it is common to “glue together” simplices to form a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex.</a> </p>
         <p> A simplicial complex, as seen below, is a union of simplices satisfying certain conditions. </p>
         
-        <img src="./images/SimplicialComplex.png" class="center90 image-right" style="width: 100%;"> 
+        <img src="./Website/images/SimplicialComplex.png" class="center90 image-right" style="width: 100%;"> 
         
        
     </div>
@@ -323,15 +323,15 @@ cfm <- table(correct,km_clusters)
         
        
         <p> A persistence diagram is very similar to a barcode, it captures the birth and death of features. The x-coordinate of a point represents when that point was born and the y-coordinate represents when that feature died. Features that are short lived occur close to the 45 degree line, while more persistent features occur at a greater distance from the 45 degree line.  </p>
-         <p> If you would like more information about persistent homology please view this <a href="./Ma342_OReilly_Armstrong.pdf">paper.</a></p>
+         <p> If you would like more information about persistent homology please view this <a href="./Website/Ma342_OReilly_Armstrong.pdf">paper.</a></p>
         <p> Aperiodic barcode and stable barcode. </p>
 
         <div class="row">
           <div class="column">
-            <img src="./images/BarcodeAperiodic.png" alt="Aperiodic Persistence Diagram" style="width: 100%">
+            <img src="./Website/images/BarcodeAperiodic.png" alt="Aperiodic Persistence Diagram" style="width: 100%">
           </div>
           <div class="column">
-            <img src="./images/BarcodeStable.png" alt="Stable Persistence Diagram" style="width: 100%">
+            <img src="./Website/images/BarcodeStable.png" alt="Stable Persistence Diagram" style="width: 100%">
           </div>
         </div>
         
@@ -340,10 +340,10 @@ cfm <- table(correct,km_clusters)
         
         <div class="row">
           <div class="column">
-            <img src="./images/PersistenceDiagramAperiodic.png" alt="Aperiodic Persistence Diagram" style="width: 100%">
+            <img src="./Website/images/PersistenceDiagramAperiodic.png" alt="Aperiodic Persistence Diagram" style="width: 100%">
           </div>
           <div class="column">
-            <img src="./images/PersistenceDiagramStable.png" alt="Stable Persistence Diagram" style="width: 100%">
+            <img src="./Website/images/PersistenceDiagramStable.png" alt="Stable Persistence Diagram" style="width: 100%">
           </div>
         </div>
 
@@ -445,7 +445,7 @@ cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect
         <p>Another application of Persistent Homology can be classifying instruments based on its persistence barcodes. Our aim is to try and classify an Instrument by its note and Accurately be able to predict the istrument by its barcode. To analyse the data of each instrument we used Audacity to get the Time Series for the data. Which can be downloaded<a href="https://www.audacityteam.org"> here.</a>
         </p>
         <p> A sample output from Audacity is seen below. A time series can be clearly seen in the track bar. This Time series is exported in a CSV file and imported into R.</p>
-        <img src="./images/Audacity.png" style="width: 100%">
+        <img src="./Website/images/Audacity.png" style="width: 100%">
         
         </div> <!-- PART 1 Section Musical Instruments -->
 <div id="AnalysisMusical">
