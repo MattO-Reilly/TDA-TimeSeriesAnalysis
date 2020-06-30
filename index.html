@@ -18,15 +18,17 @@
     <hr>
     <a href="#intro">Introduction</a>
     <hr>
-    <a href="#Analysis">Example 1: Beetle Populations</a>
-    <a href="#TimeSeries">Time Series Data</a>
-    <a href="#KMeans">K-Means Clustering</a>
-    <a href="#PersistenceDiagram">Persistent Homology </a>
+    <a href="#Analysis">First Example: Tribolium Beetle Populations</a>
+    <a href="#Beetles">Part 1: Construct time series</a>
+    <a href="#KMeans">Part 2: Analysis of time series</a>
+    <a href="#FirstConclusion">Part 3: Conclusion from first example </a>
     <hr>
-    <a href="#Musical"> Example 2: Musical Instruments </a>
-    <a href="#TimeSeriesMusical"> Part 1: Constructing the Time Series </a>
-    <a href="#AnalysisMusical"> Part 2: Analysis </a>
+    <a href="#Musical"> Second Example: Musical Instrument Classification </a>
+    <a href="#TimeSeriesMusical"> Part 1: Construct time series </a>
+    <a href="#AnalysisMusical"> Part 2: Analysis of time series </a>
+    <a href="#ConclusionMusical"> Part 3: Conclusion from second example </a>    
     <hr>
+    <a href="#ConclusionEnd"> Overall Conclusion </a>
     </div>
 
 
@@ -430,7 +432,7 @@ cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect
     <p> From the confusion matrix above it can be seen that all 200 stable time series and 181 of aperiodic time series are correctly clustered. </p>
 </div>
 
- <div class="First Conclusion">
+ <div id="FirstConclusion" class="FirstConclusion">
         <h2><u>Part 3: Conclusion from first example</u> </h2>
         <p>Persistent homology is more effective at classifying the given time series data than k-means clustering. Both k-means clustering and persistent homology classify all 200 stable time series correctly. However, there is quite a significant difference when it comes to classifying aperiodic time series. K-means clustering only correctly classifies 81 aperiodic time series whereas persistent homology correctly classifies 181 aperiodic time series. This shows how effective persistent homology is over k-means clustering at classifying the given time series data </p>
         <p> This example shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>   
@@ -440,20 +442,20 @@ cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect
     </div>
     <hr>
     <div id="Musical" class="Musical">
-        <h1> <u>Second Example: Musical Instruments</u></h1>
+        <h1> <u>Second Example: Musical Instrument Classification</u></h1>
         <div id="TimeSeriesMusical" class="TimeSeriesMusical">
-        <p> put some background here. </p>
+        <p> Another application of persistent homology can be seen in The University of Colorado paper “Computational Topology Techniques for Characterizing Time-Series Data” which analyses time series data and shows as an example how persistent homology can be used to classify notes from different musical instruments. </p>
+        <p> Our aim is to use this idea to try to correctly classify an instrument by its note. For our analysis we use two instruments: flute and clarinet. By taking samples of note A4 from each instrument we use persistent homology to try to correctly predict whether it is flute or clarinet. </p>
         <h2><u> Part 1: Constructing the Time Series</u></h2>
-        <p>Another application of Persistent Homology can be classifying instruments based on its persistence barcodes. Our aim is to try and classify an Instrument by its note and Accurately be able to predict the istrument by its barcode. To analyse the data of each instrument we used Audacity to get the Time Series for the data. Which can be downloaded<a href="https://www.audacityteam.org"> here.</a>The main difference between the procedure of the first and second examples is the way in which the time series is generated. First we found a sound library where we could get audio files of our instruments with good audio fidelity. (credit to “https://newt.phys.unsw.edu.au” who the audio files were taken from). 
-The files were then processed through audacity where using the sample data export function giving us our time series for each note. These time series were put into excel files to be more easily read by r. we then took sample time series from the original with random starting points each 1000 points long or roughly .05 seconds of the full time series. In this fashion we generated 50 different time series for each note to create our test and training data sets.
+        <p> To carry out our analysis we had to generate time series data for flute and clarinet. We used the <a href="https://newt.phys.unsw.edu.au/music/">  University of New South Wales Music Science  </a> audio file bank for our instrument samples. For both flute and clarinet, we used note A4.  We imported the audio files into Audacity in order to analyse each instrument. The files were then processed through audacity and the sample data export function generated a time series for each note. The time series for both <a href="https://github.com/MattO-Reilly/TDA-TimeSeriesAnalysis/blob/master/R%20Code/Flute%20A%20full%20time%20series.csv">flute</a> and <a href="https://github.com/MattO-Reilly/TDA-TimeSeriesAnalysis/blob/master/R%20Code/Clarinet%20A%20full%20time%20series.csv">clarinet</a> were then exported to a CSV file and imported into R. 
 
         </p>
-        <p> A sample output from Audacity is seen below. A time series can be clearly seen in the track bar. This Time series is exported in a CSV file and imported into R.</p>
+        <p>Below shows a sample audio file output from Audacity. The time series, as clearly seen in the track bar below, can be exported to a CSV file and imported into R.</p>
         <img src="./Website/images/Audacity.png" style="width: 100%">
         
         </div> <!-- PART 1 Section Musical Instruments -->
 <div id="AnalysisMusical">
-    <h2><u> Part 2: Analysis </u></h2>
+    <h2><u> Part 2: Analysis of time series </u></h2>
     <p>The following R Libraries were required.</p>
         <pre>
             <code>
@@ -463,8 +465,7 @@ library(tidyverse)
 library(data.table)
             </code>
         </pre>
-    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full flute time series, constuct a takens embedding and calculate homology for each sample.
-We then record the number of one dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
+    <p> For each instrument we start by taking 30 sample time series that have random starting points and each being 1000 points long or roughly .05 seconds of the full time series. We start by computing the average B<sub>1</sub> number for the flute. Using the 30 samples, we construct a Takens embedding and calculate homology for each sample. We then record the number of one-dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
         </p>
         <pre><code>
 #get average betti number for flute
@@ -590,7 +591,7 @@ test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
             </code>
         </pre>
  
- <p>Using the test data set we attempt to classify each time series into either flute or clarinet. Starting with the first 30 rows correspoding to flute if the B<sub>1</sub> number for each time series is cloe the the average B<sub>1</sub> number for flute we computed ealier it is classified as flute.</p>
+ <p>Using the test data set we attempt to classify each time series into either flute or clarinet. Starting with the first 30 rows corresponding to flute, if the B<sub>1</sub> number for each time series is close the average B<sub>1</sub> number for flute we computed earlier it is classified as flute.</p>
         <pre>
             <code>
 #analyse flute
@@ -632,7 +633,7 @@ incorrect_flute <- 30-length(flute_assign)
         </pre>  
    
         
-  <p>Again, using the test data set we attempt to classify each time series into either flute or clarinet. This time using the last 30 rows which correspond to clarinet, if the B<sub>1</sub> number for each time series is close the the average B<sub>1</sub> number for clarinet we computed ealier it is classified as clarinet.</p>
+  <p>Again, using the test data set we attempt to classify each time series into either flute or clarinet. This time using the last 30 rows which corresponds to clarinet, if the B<sub>1</sub> number for each time series is close the average B<sub>1</sub> number for clarinet we computed earlier it is classified as clarinet.</p>
         <pre>
             <code>
 #analyse clarinet
@@ -674,7 +675,7 @@ incorrect_clarinet <- 30 - length(clarinet_assign1)
         </pre>
          
  
- <p>Create a confusion matrix to analyse our results.</p>
+ <p>Create a confusion matrix to analyse the results.</p>
         <pre>
             <code>
 cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarinet))
@@ -701,7 +702,7 @@ cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarin
 <div id="ConclusionMusical">
     <h2><u>Part 3: Conclusion from second example.</u></h2>
     <p> Persistent homology is quite effective at classifying the given time series data. </p>
-    <p>Persistent homology classifies all 30 clarinet time series correctly and 24 flute time series correctly.</p>
+    <p>By constructing a Takens embedding, persistent homology can distinguish between flute and clarinet and it classifies all 30 clarinet time series correctly and 24 flute time series correctly.</p>
     <p> This example again shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>
      <p> Our full R code can be found <a href="https://github.com/MattO-Reilly/TDA-TimeSeriesAnalysis/blob/master/R%20Code/Example2:%20Musical_Instruments#L158"> here.</a></li>
         
@@ -709,7 +710,11 @@ cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarin
 
 </div>
 
-
+<div id="ConclusionEnd">
+    <h1><u>Overall conclusion</u></h1>
+    <p> The investigations conducted on data from flour beetle populations and musical instruments based on two recent research papers "Persistent homology for time series and spatial data clustering" - Cássio M.M. Pereira/Rodrigo F. de Mello and “Computational Topology Techniques for Characterizing Time-Series Data” - University of Colorado show how persistent homology can be used for time series classification. </p>
+    <p>The usefulness and effectiveness of persistent homology at classifying time series can be clearly seen even in comparison to more traditional methods such as k-means clustering. Overall topology can be very effective and it can be considered for use as an extra tool for statistics. </p>
+    </div>
 
 </div> <!-- Main Body-->
 </body>
