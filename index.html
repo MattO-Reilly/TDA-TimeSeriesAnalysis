@@ -578,6 +578,95 @@ for (i in 1:30) {
 
             </code>
         </pre>
+        
+        <p>Join test data into one data set.</p>
+        <pre>
+            <code>
+#combine flute and clarinet testing data into on dataframe and label each row 
+test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
+(setattr(test_data_set, "row.names", c(rep("Flute",30),rep("Clarinet",30))))
+
+            </code>
+        </pre>
+ 
+ <p>Analyse flute</p>
+        <pre>
+            <code>
+#analyse flute
+flute_assign <- c()
+clarinet_assign <- c()
+for (i in 1:30) {
+  test_flute_data_row <- test_data_set[i,]
+  
+  Flute_homology1 <- data.frame()
+  
+  test_flute_matrix <- data.matrix(test_flute_data_row)
+  tak11 <- buildTakens(test_flute_matrix,2,3)
+  hom11 <- calculate_homology(tak11,return_df = TRUE) 
+  hom_matrix11 <- calculate_homology(tak11,return_df = FALSE) 
+  hom11 <- hom11 %>%
+    mutate(persistence = death-birth) %>%
+    mutate(persistent = ifelse(persistence > 0.029, 1,0))
+  hom_matrix11 <- data.frame(hom11) %>% select(dimension, persistent)
+  hom_matrix11 <- as.data.frame(hom_matrix11) 
+  p11 <- hom_matrix11[hom_matrix11$persistent == '1',] 
+  Flute_homology1 <-rbind.data.frame(Flute_homology1,p11)
+  
+  avg <- nrow(Flute_homology1)
+  if (avg < 1.2){
+  clarinet_assign <- append(clarinet_assign,1)
+  } else {
+    flute_assign <- append(flute_assign,1)
+}
+}
+correct_flute <-length(flute_assign)
+correct_flute
+incorrect_flute <- 30-length(flute_assign)
+incorrect_flute
+
+
+            </code>
+        </pre>
+        
+  <p>Analyse clarinet</p>
+        <pre>
+            <code>
+#analyse clarinet
+flute_assign1 <- c()
+clarinet_assign1 <- c()
+for (i in 31:60) {
+  test_clarinet_data_row <- test_data_set[i,]
+  
+  Clarinet_homology1 <- data.frame()
+  
+  test_clarinet_matrix <- data.matrix(test_clarinet_data_row)
+  tak12 <- buildTakens(test_clarinet_matrix,2,3)
+  hom12 <- calculate_homology(tak12,return_df = TRUE) 
+  hom_matrix12 <- calculate_homology(tak12,return_df = FALSE) 
+  hom12 <- hom12 %>%
+    mutate(persistence = death-birth) %>%
+    mutate(persistent = ifelse(persistence > 0.029, 1,0))
+  hom_matrix12 <- data.frame(hom12) %>% select(dimension, persistent)
+  hom_matrix12 <- as.data.frame(hom_matrix12) 
+  p12 <- hom_matrix12[hom_matrix12$persistent == '1',] 
+  Clarinet_homology1 <-rbind.data.frame(Clarinet_homology1,p12)
+  
+  avg1 <- nrow(Clarinet_homology1)
+  if (avg1 < 1.2){
+    clarinet_assign1 <- append(clarinet_assign1,1)
+  } else {
+    flute_assign1 <- append(flute_assign1,1)
+  }
+}
+correct_clarinet <- length(clarinet_assign1)
+correct_clarinet
+incorrect_clarinet <- 30 - length(clarinet_assign1)
+incorrect_clarinet
+
+            </code>
+        </pre>       
+         
+ 
  
 </div><!-- part 2 analysis Example Musical Instruments-->
 
