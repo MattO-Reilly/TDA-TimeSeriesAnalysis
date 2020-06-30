@@ -545,6 +545,39 @@ avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clar
             <img src="./Website/images/clarinetbarcode.png" alt="Persistence barcode of Clarinet" style="width: 100%">
           </div>
     </div>
+    
+    
+    <p>Create test data.</p>
+        <pre>
+            <code>
+#make flute testing data
+Flute_full_note <- read.csv("FluteAfull.csv")
+Flute_test_data <- data.frame()
+for (i in 1:30) {
+  xi11 <- sample(1:37999,1,replace = FALSE, prob = NULL)
+  yi11 <- xi11 + 1000
+  sample_sequence_xi11 <- Flute_full_note[xi11:yi11,]
+  
+  Flute_dataframe <- as.data.frame(sample_sequence_xi11)
+  Flute_A_transpose <- t(Flute_dataframe)
+  Flute_test_data <- rbind.data.frame(Flute_A_transpose,Flute_test_data)
+}
+
+#make clarinet testing data
+Clarinet_full_note <- read.csv("ClarinetAfull.csv")
+Clarinet_test_data <- data.frame()
+for (i in 1:30) {
+  xi12 <- sample(1:94999,1,replace = FALSE, prob = NULL)
+  yi12 <- xi12 + 1000
+  sample_sequence_xi12 <- Clarinet_full_note[xi12:yi12,]
+  
+  CLarinet_dataframe <- as.data.frame(sample_sequence_xi12)
+  Clarinet_A_transpose <- t(CLarinet_dataframe)
+  Clarinet_test_data <- rbind.data.frame(Clarinet_A_transpose,Clarinet_test_data)
+}
+
+            </code>
+        </pre>
  
 </div><!-- part 2 analysis Example Musical Instruments-->
 
