@@ -575,7 +575,6 @@ for (i in 1:30) {
   Clarinet_A_transpose <- t(CLarinet_dataframe)
   Clarinet_test_data <- rbind.data.frame(Clarinet_A_transpose,Clarinet_test_data)
 }
-
             </code>
         </pre>
         
@@ -585,7 +584,6 @@ for (i in 1:30) {
 #combine flute and clarinet testing data into on dataframe and label each row 
 test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
 (setattr(test_data_set, "row.names", c(rep("Flute",30),rep("Clarinet",30))))
-
             </code>
         </pre>
  
@@ -619,9 +617,6 @@ for (i in 1:30) {
     flute_assign <- append(flute_assign,1)
 }
 }
-
-
-
             </code>
         </pre>
         
@@ -666,7 +661,6 @@ for (i in 31:60) {
     flute_assign1 <- append(flute_assign1,1)
   }
 }
-
             </code>
         </pre>    
  
