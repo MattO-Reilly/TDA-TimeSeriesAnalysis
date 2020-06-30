@@ -1,3 +1,4 @@
+#libraries required
 library(nonlinearTseries)
 library(TDAstats)
 library(tidyverse)
@@ -16,10 +17,8 @@ for (i in 1:30) {
   
   flute_A4_matrix <- data.matrix(sample_sequence_ai)
   tak <- buildTakens(flute_A4_matrix,2,3)
-  #plot(tak)
   hom <- calculate_homology(tak,return_df = TRUE) 
   hom_matrix <- calculate_homology(tak,return_df = FALSE) 
-  bar <- plot_barcode(hom_matrix)
   hom <- hom %>%
     mutate(persistence = death-birth) %>%
     mutate(persistent = ifelse(persistence > 0.029, 1,0))
@@ -27,17 +26,12 @@ for (i in 1:30) {
   hom_matrix <- as.data.frame(hom_matrix) 
   p1 <- hom_matrix[hom_matrix$persistent == '1',] 
   Flute_homology<-rbind.data.frame(Flute_homology,p1)
-  
-  Flute_homology
   avg <- nrow(Flute_homology)
   average_list_flute <- append(average_list_flute,avg)
 }
-average_list_flute
 avg_betti_number_flute <- sum(average_list_flute)/length(average_list_flute)
 avg_betti_number_flute
 
-```
-```{r}
 
 #clarinet
 average_list_clarinet <- c()
@@ -51,10 +45,8 @@ for (i in 1:30) {
   
   Clarinet_A4_matrix <- data.matrix(sample_sequence_ai2)
   tak2 <- buildTakens(Clarinet_A4_matrix,2,3)
-  #plot(tak2)
   hom2 <- calculate_homology(tak2,return_df = TRUE) 
   hom_matrix2 <- calculate_homology(tak2,return_df = FALSE) 
-  bar2 <- plot_barcode(hom_matrix2)
   hom2 <- hom2 %>%
     mutate(persistence = death-birth) %>%
     mutate(persistent = ifelse(persistence > 0.029, 1,0))
@@ -62,12 +54,9 @@ for (i in 1:30) {
   hom_matrix2 <- as.data.frame(hom_matrix2) 
   p2 <- hom_matrix2[hom_matrix2$persistent == '1',] 
   Clarinet_homology<-rbind.data.frame(Clarinet_homology,p2)
-  
-  Clarinet_homology
   avg2 <- nrow(Clarinet_homology)
   average_list_clarinet <- append(average_list_clarinet,avg2)
 }
-average_list_clarinet
 avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clarinet)
 avg_betti_number_clarinet
 
@@ -111,7 +100,6 @@ for (i in 1:30) {
   
   test_flute_matrix <- data.matrix(test_flute_data_row)
   tak11 <- buildTakens(test_flute_matrix,2,3)
-  #plot(tak)
   hom11 <- calculate_homology(tak11,return_df = TRUE) 
   hom_matrix11 <- calculate_homology(tak11,return_df = FALSE) 
   hom11 <- hom11 %>%
@@ -144,7 +132,6 @@ for (i in 31:60) {
   
   test_clarinet_matrix <- data.matrix(test_clarinet_data_row)
   tak12 <- buildTakens(test_clarinet_matrix,2,3)
-  #plot(tak)
   hom12 <- calculate_homology(tak12,return_df = TRUE) 
   hom_matrix12 <- calculate_homology(tak12,return_df = FALSE) 
   hom12 <- hom12 %>%
