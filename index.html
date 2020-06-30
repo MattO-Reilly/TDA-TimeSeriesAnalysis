@@ -216,7 +216,7 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
         <h1><u>Part 2: Analysis of time series.</u></h1>
         <h3><u> K-means clustering</u></h3>
 
-        <p> The k-means clustering algorithm was used to show comparison between persistent homology and a more traditional classification method. Using the k-means clustering alogrithim we attempt to correctly classify the time series data into two clusters: aperiodic and stable.</p>
+        <p> The k-means clustering algorithm was used to show comparison between persistent homology and a more traditional classification method. Using the k-means clustering algorithm we attempt to correctly classify the time series data into two clusters: aperiodic and stable.</p>
 
         <pre>
             <code>
@@ -233,14 +233,14 @@ cfm <- table(correct,km_clusters)
 
         <p> In order to analyse the results of the k-means clustering algorithm we create a confusion matrix which shows the number of true positives, true negatives, false positives, and false negatives.</p></div>
        
-    <div id="ConfusionMatrix" class="ConfusionMatrix" >
+    
+     <div id="ConfusionMatrix" class="ConfusionMatrix" >
         <p>
         \begin{aligned}
-        &\mathrm{Correct}\\
         &\begin{array}{rr}
-        \text {km Cluster} & Yes & No \\
+        \text {} & + & - \\
         Stable & 200 & 0 \\
-        Aperiodic & 81 & 119
+        Aperiodic & 119 & 81
         \end{array}
         \end{aligned}
         </p>
@@ -412,18 +412,16 @@ for (i in 201:400){
     <pre>
         <code>
 cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect_hom,aperiodic_correct_hom))
-cfm_hom
         </code>
     </pre>
 
     <div id="ConfusionMatrix" class="ConfusionMatrix" >
         <p>
         \begin{aligned}
-        &\mathrm{Correct}\\
         &\begin{array}{rr}
-        \text {Hom Cluster} & Yes & No \\
+        \text {} & + & - \\
         Stable & 200 & 0 \\
-        Aperiodic & 181 & 19
+        Aperiodic & 19 & 181
         \end{array}
         \end{aligned}
         </p>
@@ -434,7 +432,7 @@ cfm_hom
 
  <div class="First Conclusion">
         <h1><u>Part 3: Conclusion from first example</u> </h1>
-        <p>Persistent homology is more effective at classifing the given time series data than k-means clustering. Both k-means clustering and persistent homology classify all 200 stable time series correctly. However there is quite a significant difference when it comes to classifing aperiodic time series. K-means clustering only correctly classifies 81 aperiodic time series whereas persistent homology correctly classifies 181 aperiodic time series. This shows how effective persistent homology is over k-means clustering at classifing time series data </p>
+        <p>Persistent homology is more effective at classifying the given time series data than k-means clustering. Both k-means clustering and persistent homology classify all 200 stable time series correctly. However, there is quite a significant difference when it comes to classifying aperiodic time series. K-means clustering only correctly classifies 81 aperiodic time series whereas persistent homology correctly classifies 181 aperiodic time series. This shows how effective persistent homology is over k-means clustering at classifying the given time series data </p>
         <p> This example shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>                    
         
 
