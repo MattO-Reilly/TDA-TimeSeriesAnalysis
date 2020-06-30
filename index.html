@@ -445,11 +445,10 @@ cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect
         <p> Another application of persistent homology can be seen in The University of Colorado paper “Computational Topology Techniques for Characterizing Time-Series Data” which analyses time series data and shows as an example how persistent homology can be used to classify notes from different musical instruments. </p>
         <p> Our aim is to use this idea to try to correctly classify an instrument by its note. For our analysis we use two instruments: flute and clarinet. By taking samples of note A4 from each insturment we use persistent homology to try to correctly predict whether it is flute or clarinet. </p>
         <h2><u> Part 1: Constructing the Time Series</u></h2>
-        <p> To analyse the data of each instrument we used Audacity to get the Time Series for the data. Which can be downloaded<a href="https://www.audacityteam.org"> here.</a>The main difference between the procedure of the first and second examples is the way in which the time series is generated. First we found a sound library where we could get audio files of our instruments with good audio fidelity. (credit to “https://newt.phys.unsw.edu.au” who the audio files were taken from). 
-The files were then processed through audacity where using the sample data export function giving us our time series for each note. These time series were put into excel files to be more easily read by r. we then took sample time series from the original with random starting points each 1000 points long or roughly .05 seconds of the full time series. In this fashion we generated 50 different time series for each note to create our test and training data sets.
+        <p> To carry out our analysis we had to generate time series data for flute and clarinet. We used the University of New South Wales Music Science audio file bank for our instrument samples. For both flute and clarinet, we used note A4.  We imported the audio files into Audacity in order to analyse each instrument. The files were then processed through audacity and the sample data export function generated a time series for each note. The time series for both flute and clarinet were then exported to a CSV file and imported into R. 
 
         </p>
-        <p> A sample output from Audacity is seen below. A time series can be clearly seen in the track bar. This Time series is exported in a CSV file and imported into R.</p>
+        <p>Below shows a sample audio file output from Audacity. The time series, as clearly seen in the track bar below, can be exported to a CSV file and imported into R.</p>
         <img src="./Website/images/Audacity.png" style="width: 100%">
         
         </div> <!-- PART 1 Section Musical Instruments -->
@@ -464,8 +463,7 @@ library(tidyverse)
 library(data.table)
             </code>
         </pre>
-    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full flute time series, construct a Takens embedding and calculate homology for each sample.
-We then record the number of one-dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
+    <p> For each instrument we start by taking 30 sample time series that have random starting points and each being 1000 points long or roughly .05 seconds of the full time series. We start by computing the average B1 number for the flute. Using the 30 samples, we construct a Takens embedding and calculate homology for each sample. We then record the number of one-dimensional holes for each sample and compute the average B1 number for the flute. This will be used in the classification of our data.
         </p>
         <pre><code>
 #get average betti number for flute
