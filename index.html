@@ -582,10 +582,9 @@ for (i in 1:30) {
             </code>
         </pre>
         
-        <p>Join flute test data and clarinet test data into one data frame and lable each row..</p>
+        <p>Join flute test data and clarinet test data into one data frame and label each row.</p>
         <pre>
             <code>
-#combine flute and clarinet testing data into one dataframe and label each row 
 test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
 (setattr(test_data_set, "row.names", c(rep("Flute",30),rep("Clarinet",30))))
             </code>
