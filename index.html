@@ -463,7 +463,7 @@ library(tidyverse)
 library(data.table)
             </code>
         </pre>
-    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full time series, constuct a takens embedding and calculate homology for each sample.
+    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full flute time series, constuct a takens embedding and calculate homology for each sample.
 We then record the number of one dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
         </p>
         <pre><code>
@@ -497,7 +497,7 @@ avg_betti_number_flute <- sum(average_list_flute)/length(average_list_flute)
 
         </code></pre>
 
-
+<p> The average B<sub>1</sub> number for flute is 3. </p>
 
     <div class="row">
           <div class="column">
@@ -539,6 +539,7 @@ for (i in 1:30) {
 avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clarinet)
 
     </code></pre>
+    <p> The average B<sub>1</sub> number for clarinet is 1. </p>
     <div class="row">
           <div class="column">
             <img src="./Website/images/clarinettakens.png" alt="Takens Embedding of Flute" style="width: 100%">
