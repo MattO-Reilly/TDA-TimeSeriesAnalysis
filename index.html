@@ -508,10 +508,11 @@ avg_betti_number_flute <- sum(average_list_flute)/length(average_list_flute)
     
     <p> Now we can do the same for another instrument</p>
     <pre><code>
+#clarinet
 average_list_clarinet <- c()
-Clarinet_full_note <- read.csv("./ClarinetAfull.csv")
-for (i in 1:20) {
-  ai2 <- sample(1:37999,1,replace = FALSE, prob = NULL)
+Clarinet_full_note <- read.csv("ClarinetAfull.csv")
+for (i in 1:30) {
+  ai2 <- sample(1:95000,1,replace = FALSE, prob = NULL)
   bi2 <- ai2 + 1000
   sample_sequence_ai2 <- Clarinet_full_note[ai2:bi2,]
   
@@ -519,22 +520,22 @@ for (i in 1:20) {
   
   Clarinet_A4_matrix <- data.matrix(sample_sequence_ai2)
   tak2 <- buildTakens(Clarinet_A4_matrix,2,3)
-  plot(tak2)
   hom2 <- calculate_homology(tak2,return_df = TRUE) 
   hom_matrix2 <- calculate_homology(tak2,return_df = FALSE) 
-  bar2 <- plot_barcode(hom_matrix2)
   hom2 <- hom2 %>%
     mutate(persistence = death-birth) %>%
-    mutate(persistent = ifelse(persistence > 0.05, 1,0))
+    mutate(persistent = ifelse(persistence > 0.029, 1,0))
   hom_matrix2 <- data.frame(hom2) %>% select(dimension, persistent)
   hom_matrix2 <- as.data.frame(hom_matrix2) 
   p2 <- hom_matrix2[hom_matrix2$persistent == '1',] 
   Clarinet_homology<-rbind.data.frame(Clarinet_homology,p2)
-  
-  Clarinet_homology
   avg2 <- nrow(Clarinet_homology)
   average_list_clarinet <- append(average_list_clarinet,avg2)
 }
+
+
+avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clarinet)
+
     </code></pre>
     <div class="row">
           <div class="column">
