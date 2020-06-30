@@ -463,7 +463,8 @@ library(tidyverse)
 library(data.table)
             </code>
         </pre>
-    <p> The following code is used to Takens Embed the Time Series and then Calculate its homology and Betti Numbers. It is important to note that we are distinguishing instruments by the number of one dimensional holes. 
+    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full time series, constuct a takens embedding and calculate homology for each sample.
+We then record the number of one dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
         </p>
         <pre><code>
 #get average betti number for flute
@@ -507,7 +508,7 @@ avg_betti_number_flute <- sum(average_list_flute)/length(average_list_flute)
           </div>
     </div>
     
-    <p> Now we can do the same for another instrument</p>
+    <p> Next, we repeat the same steps to calculate the average B<sub>1</sub> number for the clarinet.</p>
     <pre><code>
 #clarinet
 average_list_clarinet <- c()
@@ -548,7 +549,8 @@ avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clar
     </div>
     
     
-    <p>Create test data.</p>
+    <p>Now we have the average B<sub>1</sub> number for both flute and clarinet. </p>
+    <p> Next, we want to create a test data set consisting of 30 flute time series samples and 30 clarinet time series samples.
         <pre>
             <code>
 #make flute testing data
@@ -579,10 +581,10 @@ for (i in 1:30) {
             </code>
         </pre>
         
-        <p>Join test data into one data set.</p>
+        <p>Join flute test data and clarinet test data into one data frame and lable each row..</p>
         <pre>
             <code>
-#combine flute and clarinet testing data into on dataframe and label each row 
+#combine flute and clarinet testing data into one dataframe and label each row 
 test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
 (setattr(test_data_set, "row.names", c(rep("Flute",30),rep("Clarinet",30))))
             </code>
