@@ -85,7 +85,7 @@
         <br>
         <p> We focus on example 4.1 Population growth analysis of Tribolium flour beetle. Our aim was to recreate this example using R and the same model used in the paper for the Tribolium flour beetle to investigate if we could classify time series data using persistent homology more effectively than k-means clustering and to compare our results to that of the paper.  </p>
 
-        <h1><u>Part 1: Construct time series.</u></h1>
+        <h2><u>Part 1: Construct time series.</u></h2>
         <p>The following R Libraries were required in our analysis.</p>
         <pre>
             <code>
@@ -213,7 +213,7 @@ Time_Series_Data <- rbind.data.frame(transposeStable,Time_Series_Data)
         </pre>
 
         <div class="KMeans" id="KMeans">
-        <h1><u>Part 2: Analysis of time series.</u></h1>
+        <h2><u>Part 2: Analysis of time series.</u></h2>
         <h3><u> K-means clustering</u></h3>
 
         <p> The k-means clustering algorithm was used to show comparison between persistent homology and a more traditional classification method. Using the k-means clustering algorithm we attempt to correctly classify the time series data into two clusters: aperiodic and stable.</p>
@@ -431,7 +431,7 @@ cfm_hom <-cbind(c(stable_correct_hom,aperiodic_incorrect_hom),c(stable_incorrect
 </div>
 
  <div class="First Conclusion">
-        <h1><u>Part 3: Conclusion from first example</u> </h1>
+        <h2><u>Part 3: Conclusion from first example</u> </h2>
         <p>Persistent homology is more effective at classifying the given time series data than k-means clustering. Both k-means clustering and persistent homology classify all 200 stable time series correctly. However, there is quite a significant difference when it comes to classifying aperiodic time series. K-means clustering only correctly classifies 81 aperiodic time series whereas persistent homology correctly classifies 181 aperiodic time series. This shows how effective persistent homology is over k-means clustering at classifying the given time series data </p>
         <p> This example shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>                    
         
@@ -522,8 +522,16 @@ average_list_clarinet
 avg_betti_number_clarinet <- sum(average_list_clarinet)/length(average_list_clarinet)
 avg_betti_number_clarinet
     </code></pre>
-</div><!-- Second Example Musical Instruments-->
+</div><!-- part 2 analysis Example Musical Instruments-->
 
+<!-- part 3 musical Instruments -->
+<div id="ConclusionMusical">
+    <h2><u>Part 3: Conclusion from second example.</u></h2>
+    <p>Persistent homology is more effective at classifying the given time series data than k-means clustering. Both k-means clustering and persistent homology classify all 200 stable time series correctly. However, there is quite a significant difference when it comes to classifying aperiodic time series. K-means clustering only correctly classifies 81 aperiodic time series whereas persistent homology correctly classifies 181 aperiodic time series. This shows how effective persistent homology is over k-means clustering at classifying the given time series data </p>
+    <p> This example shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>
+    
+
+</div>
 
 
 
