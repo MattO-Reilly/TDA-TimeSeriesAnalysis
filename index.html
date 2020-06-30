@@ -463,8 +463,8 @@ library(tidyverse)
 library(data.table)
             </code>
         </pre>
-    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full flute time series, constuct a takens embedding and calculate homology for each sample.
-We then record the number of one dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
+    <p> We start by computing the average B<sub>1</sub> number for the flute. We take 30 samples from the full flute time series, construct a Takens embedding and calculate homology for each sample.
+We then record the number of one-dimensional holes for each sample and compute the average B<sub>1</sub> number for the flute. This will be used in the classification of our data.
         </p>
         <pre><code>
 #get average betti number for flute
@@ -590,7 +590,7 @@ test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
             </code>
         </pre>
  
- <p>Using the test data set we attempt to classify each time series into either flute or clarinet. Starting with the first 30 rows correspoding to flute if the B<sub>1</sub> number for each time series is close the the average B<sub>1</sub> number for flute we computed ealier it is classified as flute.</p>
+ <p>Using the test data set we attempt to classify each time series into either flute or clarinet. Starting with the first 30 rows corresponding to flute if the B<sub>1</sub> number for each time series is close the average B<sub>1</sub> number for flute we computed earlier it is classified as flute.</p>
         <pre>
             <code>
 #analyse flute
@@ -632,7 +632,7 @@ incorrect_flute <- 30-length(flute_assign)
         </pre>  
    
         
-  <p>Again, using the test data set we attempt to classify each time series into either flute or clarinet. This time using the last 30 rows which correspond to clarinet, if the B<sub>1</sub> number for each time series is close the the average B<sub>1</sub> number for clarinet we computed ealier it is classified as clarinet.</p>
+  <p>Again, using the test data set we attempt to classify each time series into either flute or clarinet. This time using the last 30 rows which corresponds to clarinet, if the B<sub>1</sub> number for each time series is close the average B<sub>1</sub> number for clarinet we computed earlier it is classified as clarinet.</p>
         <pre>
             <code>
 #analyse clarinet
@@ -701,7 +701,7 @@ cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarin
 <div id="ConclusionMusical">
     <h2><u>Part 3: Conclusion from second example.</u></h2>
     <p> Persistent homology is quite effective at classifying the given time series data. </p>
-    <p>By constructing a takens embedding persistent homology can disnguish between flute and clarinet and it classifies all 30 clarinet time series correctly and 24 flute time series correctly.</p>
+    <p>By constructing a Takens embedding persistent homology can distinguish between flute and clarinet and it classifies all 30 clarinet time series correctly and 24 flute time series correctly.</p>
     <p> This example again shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>
      <p> Our full R code can be found <a href="https://github.com/MattO-Reilly/TDA-TimeSeriesAnalysis/blob/master/R%20Code/Example2:%20Musical_Instruments#L158"> here.</a></li>
         
