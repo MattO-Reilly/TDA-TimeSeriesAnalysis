@@ -590,7 +590,7 @@ test_data_set<- rbind(Flute_test_data,Clarinet_test_data)
             </code>
         </pre>
  
- <p>Using the test data set we appempt to classify each time series into either flute or clarinet. Starting with the first 30 rows correspoding to flute if the average B<sub>1</sub> number for each time series is cloe the the average B<sub>1</sub> number we computed ealier it is classified as flute.</p>
+ <p>Using the test data set we attempt to classify each time series into either flute or clarinet. Starting with the first 30 rows correspoding to flute if the B<sub>1</sub> number for each time series is cloe the the average B<sub>1</sub> number for flute we computed ealier it is classified as flute.</p>
         <pre>
             <code>
 #analyse flute
@@ -623,7 +623,7 @@ for (i in 1:30) {
             </code>
         </pre>
         
-   <p>flute correct/incorrect</p>
+   <p>Compute the number of correct and incorrect flute classifications.</p>
         <pre>
             <code>
 correct_flute <-length(flute_assign)
@@ -632,7 +632,7 @@ incorrect_flute <- 30-length(flute_assign)
         </pre>  
    
         
-  <p>Analyse clarinet</p>
+  <p>Again, using the test data set we attempt to classify each time series into either flute or clarinet. This time using the last 30 rows which correspond to clarinet, if the B<sub>1</sub> number for each time series is close the the average B<sub>1</sub> number for clarinet we computed ealier it is classified as clarinet.</p>
         <pre>
             <code>
 #analyse clarinet
@@ -665,7 +665,7 @@ for (i in 31:60) {
             </code>
         </pre>    
  
-  <p>clarinet correct/incorrect</p>
+  <p>Compute the number of correct and incorrect clarinet classifications.</p>
         <pre>
             <code>
 correct_clarinet <- length(clarinet_assign1)
@@ -674,7 +674,7 @@ incorrect_clarinet <- 30 - length(clarinet_assign1)
         </pre>
          
  
- <p>Create confusion matrix</p>
+ <p>Create a confusion matrix to analyse our results.</p>
         <pre>
             <code>
 cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarinet))
@@ -693,6 +693,7 @@ cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarin
         </p>
     </div>
  
+ <p> The confusion matrix above shows 24 flute samples correctly classified and all 30 clarinet samples correctly classified. </p>
  
 </div><!-- part 2 analysis Example Musical Instruments-->
 
