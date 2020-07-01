@@ -253,8 +253,6 @@ cfm <- table(correct,km_clusters)
 
 
     <h3><u>Takens' Theorem</u></h3>
-        <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
-        <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
 
         <div class="Taken">
         <p> Let \(M\) be a compact \(C^2\) differentiable manifold of dimension \(m\).
@@ -264,6 +262,9 @@ cfm <- table(correct,km_clusters)
         \end{equation}
         is an embedding.</p>
         </div>
+        <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
+        <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
+        <p> The theorem motivates the idea of studying a time series x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, ...  by choosing some embedding dimension m and forming the sequence of m-dimensional vectors   v<sub>1</sub>=(x<sub>1</sub>, x<sub>2</sub>, ...,x<sub>m</sub>), v<sub>2</sub>=(x<sub>2</sub>, x<sub>3</sub>, ..., x<sub>m+1</sub>), v<sub>3</sub>=(x<sub>3</sub>, x<sub>4</sub>, ..., x<sub>m+2</sub>), ... Then the geometry of the m-dimensional vectors v<sub>1</sub>, v<sub>2</sub>, v<sub>3</sub>, ... can be studied using a range of techniques. One technique involves creating filtered simplicial complexes and applying  persistent homology to them. A filtered simplicial complex is just a sequence of inclusions K<sub>1</sub> >--> K<sub>2</sub> >--> K<sub>3</sub> >--> ... of simplicial complexes K<sub>i</sub>.
         <div class="row">
           <div class="column">
             <img src="./Website/images/TakensEmbeddingAperiodic.png" alt="Takens Embedding of Aperiodic Time Series" style="width: 100%">
