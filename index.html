@@ -31,13 +31,16 @@
     <a href="#ConclusionEnd"> Overall Conclusion </a>
     </div>
 
-
 <div class="content">
     <div class="header"> 
         <h1 style="color: black;">Topological Data Analysis - The use of persistent homology for time series classification.</h1> </div>
 
     <div class='intro' id="intro">
+
         <p> This website has been created as part of a six-week summer research project by NUI Galway Undergraduate Mathematics students Matt O'Reilly, Catherine Higgins, and Paul Armstrong. We would like to acknowledge the support of the NUI Galway Summer Undergraduate Internship Programme 2020 and express our thanks to our supervisor Professor Graham Ellis for the expert guidance and assistance we received during this project. 
+
+        <p> This website has been created as part of a summer research internship by NUI Galway Undergraduate Mathematics students Catherine Higgins, Matt O'Reilly and Paul Armstrong. We would like to acknowledge the support of the NUI Galway Summer Undergraduate Internship Programme 2020 and express our thanks to our supervisor Professor Graham Ellis for the expert guidance and assistance we received during this project. 
+
         <h1><u>Introduction</u></h1>
          Topological Data Analysis (TDA) is a developing branch of data science which uses statistical learning and techniques from algebraic topology, such as persistent homology, to study data. Time series that arise in areas such as biology and finance can be very chaotic in nature and data analysis can be a challenging task due to the many difficulties that arise in understanding large, high-dimensional data that contains noise. TDA is an evolving tool that can be applied to complex systems with the aim of determining mathematical associations in the data by analysing properties that relate to the shape of the data. It provides a framework for analysing data that can gather information from large volumes of high-dimensional data, which is not dependent on the choice of metric and provides stability against noise.  </p>
         
@@ -253,8 +256,6 @@ cfm <- table(correct,km_clusters)
 
 
     <h3><u>Takens' Theorem</u></h3>
-        <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
-        <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
 
         <div class="Taken">
         <p> Let \(M\) be a compact \(C^2\) differentiable manifold of dimension \(m\).
@@ -264,6 +265,9 @@ cfm <- table(correct,km_clusters)
         \end{equation}
         is an embedding.</p>
         </div>
+        <p> Takens’ embedding theorem states that we can reconstruct a time series considering time delays. A series can be reconstructed in phase space where m is the embedding dimension (the smallest dimension required to embed an object) and t the time delay. Thus, instead of analysing the series along time, we analyse its trajectory as a set of visited states in an m-dimensional Euclidean space. This is particularly useful to extract the topological behaviour we are interested in. </p>
+        <p> In the study of dynamical systems, a delay embedding theorem gives the conditions under which a chaotic dynamical system can be reconstructed from a sequence of observations of the state of a dynamical system. The reconstruction preserves the properties of the dynamical system that do not change under smooth coordinate changes (i.e., diffeomorphisms), but it does not preserve the geometric shape of structures in phase space. </p>
+        <p> The theorem motivates the idea of studying a time series x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, ...  by choosing some embedding dimension m and forming the sequence of m-dimensional vectors   v<sub>1</sub>=(x<sub>1</sub>, x<sub>2</sub>, ...,x<sub>m</sub>), v<sub>2</sub>=(x<sub>2</sub>, x<sub>3</sub>, ..., x<sub>m+1</sub>), v<sub>3</sub>=(x<sub>3</sub>, x<sub>4</sub>, ..., x<sub>m+2</sub>), ... Then the geometry of the m-dimensional vectors v<sub>1</sub>, v<sub>2</sub>, v<sub>3</sub>, ... can be studied using a range of techniques. One technique involves creating filtered simplicial complexes and applying  persistent homology to them. A filtered simplicial complex is just a sequence of inclusions K<sub>1</sub> >--> K<sub>2</sub> >--> K<sub>3</sub> >--> ... of simplicial complexes K<sub>i</sub>.
         <div class="row">
           <div class="column">
             <img src="./Website/images/TakensEmbeddingAperiodic.png" alt="Takens Embedding of Aperiodic Time Series" style="width: 100%">
@@ -320,6 +324,7 @@ cfm <- table(correct,km_clusters)
 
     <div class="PersistenceDiagram" id="PersistenceDiagram">
         <h3><u>Persistent Homology: Bar Codes and Persistence Diagrams</u> </h3>
+        <p> To any simplicial complex K we can associate a homology vector space H<sub>n</sub>(K). To a filtered simplicial complex K<sub>1</sub> >--> K<sub>2</sub> >--> K<sub>3</sub> >--> ... we can associate a sequence of linear homomorphisms H<sub>n</sub>(K<sub>1</sub>) --> H<sub>n</sub>(K<sub>2</sub>) --> H<sub>n</sub>(K<sub>3</sub> ) --> ....  This sequence of linear homomorphisms can be fully captured using the language of persistent n-dimensional Betti numbers. </p>
         <p> Persistent homology is a method for computing topological features of a space at different spatial resolutions. The space must first be represented as a simplicial complex. More persistent features are detected over a wide range of spatial scales and are deemed more likely to represent true features of the underlying space rather than noise. </p>
         <p>A bar code is a visual representation of persistent homology. Long bars represent features and short bars represent noise. </p>
         
@@ -704,6 +709,7 @@ cfm <-cbind(c(correct_flute,incorrect_clarinet),c(incorrect_flute,correct_clarin
     <h2><u>Part 3: Conclusion from second example.</u></h2>
     <p> Persistent homology is quite effective at classifying the given time series data. </p>
     <p>By constructing a Takens embedding, persistent homology can distinguish between flute and clarinet and it classifies all 30 clarinet time series correctly and 24 flute time series correctly.</p>
+    <p> In the paper the authors also tried using a classical classification involving fast Fourier transforms. The classical approach was not as successful as the persistent homology approach. </p>
     <p> This example again shows how effective topology can be and how it can be considered for use as an extra tool for statistics. </p>
      <p> Our full R code can be found <a href="https://github.com/MattO-Reilly/TDA-TimeSeriesAnalysis/blob/master/R%20Code/Example2:%20Musical_Instruments#L158"> here.</a></li>
         
